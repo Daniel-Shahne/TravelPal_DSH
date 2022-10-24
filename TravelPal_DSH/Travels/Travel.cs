@@ -21,6 +21,7 @@ namespace TravelPal_DSH.Travels
         private DateTime startDate;
         private DateTime endDate;
         private User travelOwner;
+        // TODO add List<PackingListItem>
 
         public string Destination { get => destination; set => destination = value; }
         public int Travellers { get => travellers; set => travellers = value; }
