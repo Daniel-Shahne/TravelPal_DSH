@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelPal_DSH.Enums;
+using TravelPal_DSH.PackingItems;
 using TravelPal_DSH.Users;
 
 namespace TravelPal_DSH.Travels
@@ -21,7 +22,7 @@ namespace TravelPal_DSH.Travels
         private DateTime startDate;
         private DateTime endDate;
         private User travelOwner;
-        // TODO add List<PackingListItem>
+        private List<PackingListItem>? packingList;
 
         public string Destination { get => destination; set => destination = value; }
         public int Travellers { get => travellers; set => travellers = value; }
@@ -41,8 +42,9 @@ namespace TravelPal_DSH.Travels
             } 
         }
         internal User TravelOwner { get => travelOwner; }
+        internal List<PackingListItem>? PackingList { get => packingList; }
 
-        public Travel(string destination, int travellers, All_Countries country, DateTime startDate, DateTime endDate, User travelOwner)
+        public Travel(string destination, int travellers, All_Countries country, DateTime startDate, DateTime endDate, User travelOwner, List<PackingListItem>? packingList = null)
         {
             this.destination = destination;
             this.travellers = travellers;
@@ -52,6 +54,8 @@ namespace TravelPal_DSH.Travels
             this.travelOwner = travelOwner;
 
             calculateTravelDays();
+
+            if (packingList is not null) this.packingList = packingList;
         }
 
         private int calculateTravelDays()

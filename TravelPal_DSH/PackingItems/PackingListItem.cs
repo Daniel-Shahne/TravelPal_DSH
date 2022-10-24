@@ -8,6 +8,8 @@ namespace TravelPal_DSH.PackingItems
 {
     internal interface PackingListItem
     {
+        string Name { get; }
 
+        string GetInfo();
     }
 }

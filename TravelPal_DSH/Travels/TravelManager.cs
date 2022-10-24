@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelPal_DSH.Enums;
+using TravelPal_DSH.PackingItems;
 using TravelPal_DSH.Users;
 
 namespace TravelPal_DSH.Travels
@@ -18,9 +19,9 @@ namespace TravelPal_DSH.Travels
         }
 
         // Creates a new travel and adds to travels
-        public void addTravel(string destination, int travellers, All_Countries country, DateTime startDate, DateTime endDate, User travelOwner)
+        public void addTravel(string destination, int travellers, All_Countries country, DateTime startDate, DateTime endDate, User travelOwner, List<PackingListItem>? packingList = null)
         {
-            Travel newTravel = new Travel(destination, travellers, country, startDate, endDate, travelOwner);
+            Travel newTravel = new Travel(destination, travellers, country, startDate, endDate, travelOwner, packingList);
             travels.Add(newTravel);
         }
 
