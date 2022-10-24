@@ -1,0 +1,109 @@
+﻿<Window x:Class="TravelPal_DSH.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPal_DSH"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Background="MintCream"
+        FontFamily="Arial">
+    <Grid Margin="30">
+        <!-- Main division into two columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- Main row divisions (fourth row used for error messeges) -->
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!-- Rectangle that fills both columns, and control containing rows, for color -->
+        <Rectangle
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="5"
+            Fill="MediumSlateBlue" 
+            RadiusY="20" RadiusX="20"/>
+        
+        <!-- TravelPal logo -->
+        <Label
+            Grid.ColumnSpan="2"
+            Content="TravelPal"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontFamily="Arial"
+            FontSize="60" Foreground="MintCream"/>
+
+        <!-- Textboxes and their explaining labels -->
+        <Label
+            Grid.Row="1"
+            Content="Username"
+            FontSize="30"
+            Foreground="MintCream"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"/>
+        <TextBox x:Name="txbUsername"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="17"
+                 Foreground="MediumSlateBlue"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 FontSize="28"
+                 MaxLength="20"/>
+
+        <Label
+            Grid.Row="2"
+            Content="Password"
+            FontSize="30"
+            Foreground="MintCream"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"/>
+        <PasswordBox x:Name="pswPassword"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="17"
+                 Foreground="MediumSlateBlue"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 FontSize="28"
+                 MaxLength="20"/>
+        
+        <!-- Initially hidden label for error messeges -->
+        <Label
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Foreground="MintCream"
+            FontSize="20" 
+            Visibility="Hidden"/>
+
+        <!-- Buttons for logging in and creating new -->
+        <Button x:Name="btnLogin"
+                Grid.Row="4"
+                Margin="120 20"
+                Content="Login"
+                FontSize="30"
+                Foreground="MediumSlateBlue"
+                Background="MintCream"
+                BorderBrush="MintCream"
+                />
+        <Button x:Name="btnRegister"
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="120 20"
+                Content="Register"
+                FontSize="30"
+                Foreground="MediumSlateBlue"
+                Background="MintCream"
+                BorderBrush="MintCream"
+                />
+
+    </Grid>
+</Window>
