@@ -75,7 +75,7 @@
                  MaxLength="20"/>
         
         <!-- Initially hidden label for error messeges -->
-        <Label
+        <Label x:Name="lblError"
             Grid.Row="3"
             Grid.ColumnSpan="2"
             VerticalAlignment="Center"
@@ -93,7 +93,7 @@
                 Foreground="MediumSlateBlue"
                 Background="MintCream"
                 BorderBrush="MintCream"
-                />
+                Click="btnLogin_Click"/>
         <Button x:Name="btnRegister"
                 Grid.Row="4"
                 Grid.Column="1"

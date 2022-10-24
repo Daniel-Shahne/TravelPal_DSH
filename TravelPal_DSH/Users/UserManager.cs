@@ -39,9 +39,9 @@ namespace TravelPal_DSH.Users
 
         /* Used as step BEFORE signInUser to make sure said username
          * exists */
-        private bool validateUsername(string userName)
+        public bool validateUsername(string userName)
         {
-            IUser? userToLogin = (IUser?)users.First(user => user.Name.Equals(userName));
+            IUser? userToLogin = (IUser?)users.FirstOrDefault(user => user.Name.Equals(userName), null);
 
             if (userToLogin is not null) return true;
             else return false;

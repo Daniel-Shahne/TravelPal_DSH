@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TravelPal_DSH.Users;
 
 namespace TravelPal_DSH
 {
@@ -13,5 +14,10 @@ namespace TravelPal_DSH
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            MainWindow mainWin = new MainWindow();
+            mainWin.Show();
+        }
     }
 }

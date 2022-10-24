@@ -13,6 +13,7 @@ namespace TravelPal_DSH.Users
         private string password;
         private All_Countries location;
         private bool isEuropean;
+        // TODO implement List<Travel>
 
         public string Name { get { return name; } set { name = value; } }
         public string Password { get { return password; } set { password = value; } }
