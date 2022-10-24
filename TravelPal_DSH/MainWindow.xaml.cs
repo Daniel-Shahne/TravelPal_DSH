@@ -65,5 +65,12 @@ namespace TravelPal_DSH
                 updateErrorMsg("This user does not exist!");  
             }
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterWindow regWin = new(userManager);
+            regWin.Show();
+            this.Close();
+        }
     }
 }

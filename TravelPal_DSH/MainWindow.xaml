@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Background="MintCream"
-        FontFamily="Arial">
+        FontFamily="Arial"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="30">
         <!-- Main division into two columns -->
         <Grid.ColumnDefinitions>
@@ -103,7 +104,7 @@
                 Foreground="MediumSlateBlue"
                 Background="MintCream"
                 BorderBrush="MintCream"
-                />
+                Click="btnRegister_Click"/>
 
     </Grid>
 </Window>

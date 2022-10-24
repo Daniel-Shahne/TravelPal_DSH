@@ -26,19 +26,18 @@ namespace TravelPal_DSH.Users
          * Does not add user if username is taken */
         public bool addUser(IUser user)
         {
-            var takenUserNames = users.Select(user => user.Name).ToList();
-
-            if (!takenUserNames.Contains(user.Name))
+            // Checks if username is taken
+            if (validateUsername(user.Name)) return false;
+            else
             {
                 users.Add(user);
                 return true;
             }
-            else return false;
         }
 
 
         /* Used as step BEFORE signInUser to make sure said username
-         * exists */
+         * exists. Also used in addUser to check if username is taken */
         public bool validateUsername(string userName)
         {
             IUser? userToLogin = (IUser?)users.FirstOrDefault(user => user.Name.Equals(userName), null);
