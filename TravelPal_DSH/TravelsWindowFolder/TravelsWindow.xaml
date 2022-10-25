@@ -35,6 +35,7 @@
                    FontSize="30"
                    Foreground="MintCream"/>
 
+            <!-- ListView bound to Travels prop of the user datacontext -->
             <ListView x:Name="lvTravels"
                       ItemsSource="{Binding Travels}"
                       Grid.Row="2"
@@ -71,7 +72,8 @@
                     Background="MintCream"
                     Grid.Row="0"
                     Height="40"
-                    Width="200"/>
+                    Width="200"
+                    Click="btnUserDetails_Click"/>
             <Button x:Name="btnAddTravel"
                     Content="Add travel"
                     FontSize="20"

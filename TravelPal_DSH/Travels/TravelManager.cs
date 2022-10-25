@@ -24,7 +24,7 @@ namespace TravelPal_DSH.Travels
             Travel newTravel = new Travel(destination, travellers, country, startDate, endDate, travelOwner, packingList);
             travels.Add(newTravel);
 
-            travelOwner.refreshUserTravels(getUserTravels(travelOwner.Name));
+            travelOwner.refreshUserTravels(getUserTravels(travelOwner));
         }
 
         // Deletes a travel from travels
@@ -32,15 +32,15 @@ namespace TravelPal_DSH.Travels
         {
             travels.Remove(travel);
 
-            travel.TravelOwner.refreshUserTravels(getUserTravels(travel.TravelOwner.Name));
+            travel.TravelOwner.refreshUserTravels(getUserTravels(travel.TravelOwner));
         }
 
         /* Returns a filtered list of travels where the travel owners
-         * username matches the parameter. To be used by an User objects
+         * matches the parameter obj. To be used by an User objects
          * refreshUserTravels method */
-        public List<Travel> getUserTravels(string username)
+        public List<Travel> getUserTravels(User user)
         {
-            List<Travel> filteredList = travels.Where(x => x.TravelOwner.Name.Equals(username)).ToList();
+            List<Travel> filteredList = travels.Where(x => x.TravelOwner.Equals(user)).ToList();
             return filteredList;
         }
     }

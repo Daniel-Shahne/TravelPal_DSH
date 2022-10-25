@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelPal_DSH.Travels;
+using TravelPal_DSH.UserDetailsWindowFolder;
 using TravelPal_DSH.Users;
 
 namespace TravelPal_DSH.TravelsWindowFolder
@@ -43,6 +44,13 @@ namespace TravelPal_DSH.TravelsWindowFolder
         {
             MainWindow mainWin = new(userManager, travelManager);
             mainWin.Show();
+            this.Close();
+        }
+
+        private void btnUserDetails_Click(object sender, RoutedEventArgs e)
+        {
+            UserDetailsWindow udw = new(travelManager, userManager);
+            udw.Show();
             this.Close();
         }
     }
