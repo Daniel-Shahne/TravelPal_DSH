@@ -16,6 +16,8 @@ namespace TravelPal_DSH.Users
             new User("Gandalf", "password", Enums.All_Countries.Japan)
         };
 
+        internal IUser? SignedInUser { get => signedInUser; }
+
         public UserManager() { }
 
 
@@ -48,7 +50,8 @@ namespace TravelPal_DSH.Users
 
         /* Should ONLY be called after validateUsername, to attempt
          * a login after an username has been verified to exist in
-         * the list of users.*/
+         * the list of users. Bool as success status, and sets
+         * signedInUser upon success */
         public bool signInUser(string userName, string password)
         {
             IUser userToLogin = (IUser)users.First(user => user.Name.Equals(userName));

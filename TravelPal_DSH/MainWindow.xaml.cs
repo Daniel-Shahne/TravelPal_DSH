@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelPal_DSH.Travels;
+using TravelPal_DSH.TravelsWindowFolder;
 using TravelPal_DSH.Users;
 
 namespace TravelPal_DSH
@@ -22,17 +24,21 @@ namespace TravelPal_DSH
     public partial class MainWindow : Window
     {
         UserManager userManager;
+        TravelManager travelManager;
         
         /* MainWindow is launched from an event in App.Xaml(.cs)
          * as MainWindow needs to know wether to instantiate a new
          * userManager, or use the one passed in it (from other created
          * windows further down app runtime, as new users are created) */
-        internal MainWindow(UserManager? userManager = null)
+        internal MainWindow(UserManager? userManager = null, TravelManager? travelManager = null)
         {
             InitializeComponent();
 
             if (userManager is not null) this.userManager = userManager;
             else this.userManager = new();
+
+            if (travelManager is not null) this.travelManager = travelManager;
+            else this.travelManager = new();
         }
 
         /* Used in btnLogin click event to update an initially hidden
@@ -53,7 +59,9 @@ namespace TravelPal_DSH
             {
                 if (userManager.signInUser(txbUsername.Text, pswPassword.Password))
                 {
-                    
+                    TravelsWindow traWin = new(userManager, travelManager);
+                    traWin.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -68,7 +76,7 @@ namespace TravelPal_DSH
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow regWin = new(userManager);
+            RegisterWindow regWin = new(userManager, travelManager);
             regWin.Show();
             this.Close();
         }

@@ -23,12 +23,16 @@ namespace TravelPal_DSH.Travels
         {
             Travel newTravel = new Travel(destination, travellers, country, startDate, endDate, travelOwner, packingList);
             travels.Add(newTravel);
+
+            travelOwner.refreshUserTravels(getUserTravels(travelOwner.Name));
         }
 
         // Deletes a travel from travels
         public void removeTravel(Travel travel)
         {
             travels.Remove(travel);
+
+            travel.TravelOwner.refreshUserTravels(getUserTravels(travel.TravelOwner.Name));
         }
 
         /* Returns a filtered list of travels where the travel owners

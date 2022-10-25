@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelPal_DSH.Enums;
+using TravelPal_DSH.Travels;
 using TravelPal_DSH.Users;
 
 namespace TravelPal_DSH
@@ -23,17 +24,19 @@ namespace TravelPal_DSH
     public partial class RegisterWindow : Window
     {
         private UserManager userManager;
+        private TravelManager travelManager;
         bool userNameOk;
         bool passwordOk;
 
         BrushConverter bc = new();
         Brush? badInputColor;
 
-        internal RegisterWindow(UserManager userManager)
+        internal RegisterWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
 
             this.userManager = userManager;
+            this.travelManager = travelManager;
 
             cmbCountry.ItemsSource = Enum.GetValues(typeof(All_Countries)); // TODO fix display name
 
@@ -48,7 +51,7 @@ namespace TravelPal_DSH
          * sending the current usermanager instance */
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWin = new(userManager);
+            MainWindow mainWin = new(userManager, travelManager);
             mainWin.Show();
             this.Close();
         }

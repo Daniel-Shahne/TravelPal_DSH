@@ -58,6 +58,7 @@ namespace TravelPal_DSH.Travels
             if (packingList is not null) this.packingList = packingList;
         }
 
+        // Calculates how many days the travel is
         private int calculateTravelDays()
         {
             // TODO check if rounding causes no issues
@@ -66,9 +67,17 @@ namespace TravelPal_DSH.Travels
             return hours;
         }
 
+        /* TODO need to fix lvTravels in TravelsWindow so it uses
+         * GetInfo rather than ToString. Apparently this could be
+         * done via DisplayMemberPath but that did not work for me? */
         public string GetInfo()
         {
-            return "Travel getinfo not yet implemented";
+            return $"{country.ToString()}: {destination} during {travelDays} days";
+        }
+
+        public override string ToString()
+        {
+            return $"(TS) {country.ToString()}: {destination} during {travelDays} days";
         }
     }
 }
