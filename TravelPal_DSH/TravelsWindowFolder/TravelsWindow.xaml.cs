@@ -40,6 +40,8 @@ namespace TravelPal_DSH.TravelsWindowFolder
             travelManager.addTravel("Malmo", 2, Enums.All_Countries.Sweden, DateTime.Now, DateTime.Now, new User("Deez", "nuts", Enums.All_Countries.Sweden));
         }
 
+        /* Sends the current usermanager and travelmanager instances 
+         * to a new mainwindow, and transitions windows to mainwindow */
         private void btnSignOut_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWin = new(userManager, travelManager);
@@ -47,11 +49,28 @@ namespace TravelPal_DSH.TravelsWindowFolder
             this.Close();
         }
 
+        /* Sends the current usermanager and travelmanager instances
+         * to a new userdetailswindow, and transitions windows to
+         * the userdetailswindow */
         private void btnUserDetails_Click(object sender, RoutedEventArgs e)
         {
             UserDetailsWindow udw = new(travelManager, userManager);
             udw.Show();
             this.Close();
+        }
+
+        /* Removes a selected travel (nullchecks too) from lvTravel.
+         * lvTravel itself is updated due to User implementing 
+         * INotifyPropertyChanged, where its Travels property 
+         * notifies lvTravels of the change. */
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvTravels.SelectedItem is not null)
+            {
+                Travel travelToRemove = (Travel)lvTravels.SelectedItem;
+                travelManager.removeTravel(travelToRemove);
+            }
+            else MessageBox.Show("Need to select a travel first", "No selected travel", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

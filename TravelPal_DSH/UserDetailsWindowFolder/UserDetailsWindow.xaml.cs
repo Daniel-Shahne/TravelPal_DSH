@@ -149,7 +149,11 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
                     lblMessage.Visibility = Visibility.Visible;
                 }
             }
-            else return;
+            else
+            {
+                lblMessage.Content = "";
+                lblMessage.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

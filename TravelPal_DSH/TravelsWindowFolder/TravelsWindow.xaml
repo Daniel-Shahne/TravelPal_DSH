@@ -13,7 +13,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <!-- Left first layer column: User label and listview -->
+        <!-- Left first layer column: User label (empty initally) and listview -->
         <Grid Margin="15">
 
             <!-- Division into two rows -->
@@ -97,7 +97,8 @@
                     Background="MintCream"
                     Grid.Row="3"
                     Height="40"
-                    Width="200"/>
+                    Width="200"
+                    Click="btnRemove_Click"/>
             <Button x:Name="btnSignOut"
                     Content="Sign Out"
                     FontSize="20"
