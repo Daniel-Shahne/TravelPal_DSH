@@ -8,7 +8,7 @@ namespace TravelPal_DSH.Enums
 {
     internal enum Trip_Types
     {
-        Leisure,
-        Work
+        Trip,
+        Vacation
     }
 }

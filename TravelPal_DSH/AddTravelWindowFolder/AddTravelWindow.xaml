@@ -1,0 +1,149 @@
+﻿<Window x:Class="TravelPal_DSH.AddTravelWindowFolder.AddTravelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPal_DSH.AddTravelWindowFolder"
+        mc:Ignorable="d"
+        Title="AddTravelWindow" Height="450" Width="800">
+    <Grid Margin="15">
+        <!-- First layer column division -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Background rectangle -->
+        <Rectangle
+            Fill="MediumSlateBlue"
+            RadiusX="15"
+            RadiusY="15"
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="2"/>
+
+        <!-- Layer two: Leftern subgrid-->
+        <Grid>
+            
+            <!-- Dividing layer two into two columns -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Dividing layer two into multiple rows -->
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!-- Country cmb and label -->
+            <Label
+                Content="Country"
+                Grid.Row="0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <ComboBox x:Name="cmbCountry"
+                      Grid.Column="1"
+                      Margin="15 20"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      FontSize="20"
+                      Foreground="MediumSlateBlue"
+                      Background="MintCream"/>
+            
+            <!-- Travellers txb and label -->
+            <Label
+                Content="Travellers"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <TextBox x:Name="txbTravellers"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Width="70"
+                     MaxLength="2"
+                     Margin="15"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     FontSize="20"
+                     Foreground="MediumSlateBlue"
+                     Background="MintCream"/>
+            
+            <!-- Destination txb and label -->
+            <Label
+                Content="Destination"
+                Grid.Row="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <TextBox x:Name="txbDestination"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     MaxLength="15"
+                     Margin="15"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     FontSize="20"
+                     Foreground="MediumSlateBlue"
+                     Background="MintCream"/>
+            
+            <!-- Trip cmb and its label-->
+            <Label
+                Content="Trip type"
+                Grid.Row="3"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <ComboBox x:Name="cmbTripType"
+                      Grid.Row="3"
+                      Grid.Column="1"
+                      Margin="15"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      FontSize="20"
+                      Foreground="MediumSlateBlue"
+                      Background="MintCream"/>
+            
+            <!-- Section below is dependant on trip cmb above -->
+            <!-- Label (Trip type OR all incl.) and cmb OR cb -->
+            <Label x:Name="lblTripOrVacation"
+                   Content="TEMPORARY"
+                   Grid.Row="4"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="20"
+                   Foreground="MintCream"/>
+            <ComboBox x:Name="cmbTripOrVacation"
+                      Visibility="Hidden"
+                      Grid.Row="4"
+                      Grid.Column="1"
+                      Margin="15"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      FontSize="20"
+                      Foreground="MediumSlateBlue"
+                      Background="MintCream"/>
+            <CheckBox x:Name="cbAllInclusive"
+                      Visibility="Hidden"
+                      Grid.Row="4"
+                      Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Content="All inclusive"
+                      FontSize="20"
+                      Foreground="MintCream"
+                      Background="MintCream"/>
+
+        </Grid>
+        
+    </Grid>
+</Window>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravelPal_DSH.AddTravelWindowFolder;
 using TravelPal_DSH.Travels;
 using TravelPal_DSH.UserDetailsWindowFolder;
 using TravelPal_DSH.Users;
@@ -71,6 +72,13 @@ namespace TravelPal_DSH.TravelsWindowFolder
                 travelManager.removeTravel(travelToRemove);
             }
             else MessageBox.Show("Need to select a travel first", "No selected travel", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void btnAddTravel_Click(object sender, RoutedEventArgs e)
+        {
+            AddTravelWindow addwin = new(travelManager, userManager);
+            addwin.Show();
+            this.Close();
         }
     }
 }

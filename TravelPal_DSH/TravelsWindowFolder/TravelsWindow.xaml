@@ -81,7 +81,8 @@
                     Background="MintCream"
                     Grid.Row="1"
                     Height="40"
-                    Width="200"/>
+                    Width="200"
+                    Click="btnAddTravel_Click"/>
             <Button x:Name="btnDetails"
                     Content="Details"
                     FontSize="20"

@@ -70,9 +70,9 @@ namespace TravelPal_DSH.Travels
         /* TODO need to fix lvTravels in TravelsWindow so it uses
          * GetInfo rather than ToString. Apparently this could be
          * done via DisplayMemberPath but that did not work for me? */
-        public string GetInfo()
+        public virtual string GetInfo()
         {
-            return $"{country.ToString()}: {destination} during {travelDays} days";
+            return $"Using travels getinfo...";
         }
 
         public override string ToString()
