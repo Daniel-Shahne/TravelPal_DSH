@@ -35,5 +35,35 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             cmbCountry.ItemsSource = Enum.GetValues(typeof(All_Countries)); //TODO fix country names
             cmbTripType.ItemsSource = Enum.GetValues(typeof(Trip_Types));
         }
+
+        private void cmbTravelType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem cbi = (ComboBoxItem)cmbTravelType.SelectedItem;
+
+            if (cbi.Content.ToString().Equals("Trip"))
+            {
+                lblTripOrVacation.Content = "Trip type";
+                cbAllInclusive.Visibility = Visibility.Hidden;
+                cmbTripType.Visibility = Visibility.Visible;
+            }
+            else if (cbi.Content.ToString().Equals("Vacation"))
+            {
+                lblTripOrVacation.Content = "All inclusive";
+                cbAllInclusive.Visibility = Visibility.Visible;
+                cmbTripType.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void cbDocument_Checked(object sender, RoutedEventArgs e)
+        {
+            cbRequired.Visibility = Visibility.Visible;
+            spQuantity.Visibility = Visibility.Hidden;
+        }
+
+        private void cbDocument_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cbRequired.Visibility = Visibility.Hidden;
+            spQuantity.Visibility = Visibility.Visible;
+        }
     }
 }

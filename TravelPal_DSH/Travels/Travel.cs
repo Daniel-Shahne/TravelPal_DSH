@@ -74,10 +74,5 @@ namespace TravelPal_DSH.Travels
         {
             return $"Using travels getinfo...";
         }
-
-        public override string ToString()
-        {
-            return $"(TS) {country.ToString()}: {destination} during {travelDays} days";
-        }
     }
 }

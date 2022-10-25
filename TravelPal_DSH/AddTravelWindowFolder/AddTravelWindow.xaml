@@ -13,16 +13,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <!-- Background rectangle -->
-        <Rectangle
-            Fill="MediumSlateBlue"
-            RadiusX="15"
-            RadiusY="15"
-            Grid.RowSpan="10"
-            Grid.ColumnSpan="2"/>
 
-        <!-- Layer two: Leftern subgrid-->
-        <Grid>
+        <!-- Grid Layer two: Leftern subgrid-->
+        <Grid Margin="10">
             
             <!-- Dividing layer two into two columns -->
             <Grid.ColumnDefinitions>
@@ -38,7 +31,14 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
+            <Rectangle
+            Fill="MediumSlateBlue"
+            RadiusX="15"
+            RadiusY="15"
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="2"/>
+
             <!-- Country cmb and label -->
             <Label
                 Content="Country"
@@ -97,13 +97,14 @@
             
             <!-- Trip cmb and its label-->
             <Label
-                Content="Trip type"
+                Content="Travel type"
                 Grid.Row="3"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 FontSize="20"
                 Foreground="MintCream"/>
-            <ComboBox x:Name="cmbTripType"
+            <ComboBox x:Name="cmbTravelType"
+                      SelectionChanged="cmbTravelType_SelectionChanged"
                       Grid.Row="3"
                       Grid.Column="1"
                       Margin="15"
@@ -111,18 +112,20 @@
                       HorizontalContentAlignment="Center"
                       FontSize="20"
                       Foreground="MediumSlateBlue"
-                      Background="MintCream"/>
+                      Background="MintCream">
+                <ComboBoxItem Content="Trip"/>
+                <ComboBoxItem Content="Vacation"/>
+            </ComboBox>
             
             <!-- Section below is dependant on trip cmb above -->
             <!-- Label (Trip type OR all incl.) and cmb OR cb -->
             <Label x:Name="lblTripOrVacation"
-                   Content="TEMPORARY"
                    Grid.Row="4"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="20"
                    Foreground="MintCream"/>
-            <ComboBox x:Name="cmbTripOrVacation"
+            <ComboBox x:Name="cmbTripType"
                       Visibility="Hidden"
                       Grid.Row="4"
                       Grid.Column="1"
@@ -145,5 +148,101 @@
 
         </Grid>
         
+        <!-- Grid Layer two: Right subgrid -->
+        <Grid Margin="10" Grid.Column="1">
+
+            <!-- Dividing grid layer (R) two into columns -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Dividing grid layer (R) two into rows -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                
+            </Grid.RowDefinitions>
+
+            <Rectangle
+            Fill="MediumSlateBlue"
+            RadiusX="15"
+            RadiusY="15"
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="3"/>
+
+            <!-- Cell containing name txb and label -->
+            <StackPanel HorizontalAlignment="Stretch" Margin="10">
+                <Label
+                    Content="Name"
+                    Foreground="MintCream"
+                    FontSize="17"
+                    HorizontalAlignment="Center"/>
+                <TextBox x:Name="txbItemName"
+                         Height="45"
+                         MaxLength="8"
+                         FontSize="20"
+                         Foreground="MediumSlateBlue"
+                         Background="MintCream"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+            </StackPanel>
+            
+            <!-- cb Document required or not -->
+            <CheckBox x:Name="cbDocument"
+                      Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Content="Document"
+                      FontSize="15"
+                      Foreground="MintCream" 
+                      Checked="cbDocument_Checked" 
+                      Unchecked="cbDocument_Unchecked"
+                      />
+            
+            <!-- cb required AND a cell for quantity input -->
+            <!-- only ONE of these should be visible, depending on cbDocument -->
+            <CheckBox x:Name="cbRequired"
+                      Visibility="Hidden"
+                      Grid.Column="2"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Content="Required"
+                      FontSize="15"
+                      Foreground="MintCream"/>
+            <StackPanel x:Name="spQuantity" Grid.Column="2" Margin="10">
+                <Label
+                    Content="Quantity"
+                    Foreground="MintCream"
+                    FontSize="17"
+                    HorizontalAlignment="Center"/>
+                <TextBox x:Name="txbQuantity"
+                         Height="45"
+                         MaxLength="8"
+                         FontSize="20"
+                         Foreground="MediumSlateBlue"
+                         Background="MintCream"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <!-- sp containing Labels for calendars -->
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Start Date" Width="170" Foreground="MintCream"/>
+                <Label Content="End Date" Foreground="MintCream"/>
+            </StackPanel>
+
+                <!-- sp containing two calendars -->
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <DatePicker x:Name="dpStartDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="0 0 25 0"/>
+                <DatePicker x:Name="dpEndDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="25 0 0 0"/>
+            </StackPanel>
+            
+            
+        </Grid>
     </Grid>
 </Window>

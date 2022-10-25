@@ -18,12 +18,12 @@ namespace TravelPal_DSH.Travels
            
         }
 
-        // Creates a new travel and adds to travels
-        public void addTravel(string destination, int travellers, All_Countries country, DateTime startDate, DateTime endDate, User travelOwner, List<PackingListItem>? packingList = null)
+        /* Creates a new Trip OR Vacation depending on
+         * whether allInclusive or trip_type is null*/
+        public void addTravel(Travel travel)
         {
-            Travel newTravel = new Travel(destination, travellers, country, startDate, endDate, travelOwner, packingList);
-            travels.Add(newTravel);
-
+            User travelOwner = travel.TravelOwner;
+            travels.Add(travel);
             travelOwner.refreshUserTravels(getUserTravels(travelOwner));
         }
 

@@ -34,11 +34,7 @@ namespace TravelPal_DSH.TravelsWindowFolder
             this.userManager = userManager;
             this.travelManager = travelManager;
             this.DataContext = user;
-
-            // TODO remove this, only for debugging
-            travelManager.addTravel("Paris", 2, Enums.All_Countries.France, DateTime.Now, DateTime.Now, user);
-            travelManager.addTravel("Kopenhamn", 2, Enums.All_Countries.Denmark, DateTime.Now, DateTime.Now, user);
-            travelManager.addTravel("Malmo", 2, Enums.All_Countries.Sweden, DateTime.Now, DateTime.Now, new User("Deez", "nuts", Enums.All_Countries.Sweden));
+            
         }
 
         /* Sends the current usermanager and travelmanager instances 
