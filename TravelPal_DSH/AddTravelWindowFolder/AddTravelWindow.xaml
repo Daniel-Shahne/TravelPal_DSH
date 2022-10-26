@@ -54,7 +54,8 @@
                       HorizontalContentAlignment="Center"
                       FontSize="20"
                       Foreground="MediumSlateBlue"
-                      Background="MintCream"/>
+                      Background="MintCream"
+                      />
             
             <!-- Travellers txb and label -->
             <Label
@@ -74,7 +75,8 @@
                      HorizontalContentAlignment="Center"
                      FontSize="20"
                      Foreground="MediumSlateBlue"
-                     Background="MintCream"/>
+                     Background="MintCream"
+                     TextChanged="txbIntField_TextChanged"/>
             
             <!-- Destination txb and label -->
             <Label
@@ -93,9 +95,10 @@
                      HorizontalContentAlignment="Center"
                      FontSize="20"
                      Foreground="MediumSlateBlue"
-                     Background="MintCream"/>
+                     Background="MintCream"
+                     TextChanged="txbStringField_TextChanged"/>
             
-            <!-- Trip cmb and its label-->
+            <!-- Travel type cmb and its label-->
             <Label
                 Content="Travel type"
                 Grid.Row="3"
@@ -189,7 +192,8 @@
                          Foreground="MediumSlateBlue"
                          Background="MintCream"
                          VerticalContentAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
+                         HorizontalContentAlignment="Center"
+                         TextChanged="txbStringField_TextChanged"/>
             </StackPanel>
             
             <!-- cb Document required or not -->
@@ -227,7 +231,8 @@
                          Foreground="MediumSlateBlue"
                          Background="MintCream"
                          VerticalContentAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
+                         HorizontalContentAlignment="Center"
+                         TextChanged="txbIntField_TextChanged"/>
             </StackPanel>
 
             <!-- sp containing Labels for calendars -->
@@ -241,8 +246,34 @@
                 <DatePicker x:Name="dpStartDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="0 0 25 0"/>
                 <DatePicker x:Name="dpEndDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="25 0 0 0"/>
             </StackPanel>
-            
-            
+
+            <!-- ListView containing packing items -->
+            <ListView x:Name="lvPackingItems"
+                      Grid.Row="3"
+                      Grid.ColumnSpan="3"
+                      Margin="15"
+                      Foreground="MediumSlateBlue"
+                      Background="MintCream"/>
+
+            <!-- Buttons -->
+            <Button x:Name="btnAddItem"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Margin="15 40"
+                    Content="Add Item"
+                    Background="MintCream"
+                    Foreground="MediumSlateBlue"
+                    FontSize="17"
+                    Click="btnAddItem_Click"/>
+            <Button x:Name="btnCancel"
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Margin="15 40"
+                    Content="Cancel"
+                    Background="MintCream"
+                    Foreground="MediumSlateBlue"
+                    FontSize="17"
+                    Click="btnCancel_Click"/>
         </Grid>
     </Grid>
 </Window>

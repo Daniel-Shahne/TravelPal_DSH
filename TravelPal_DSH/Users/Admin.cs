@@ -40,7 +40,7 @@ namespace TravelPal_DSH.Users
         /*  Shouls be run anytime location is changed, to update
          *  isEuropean. */
         // WTF WHY CANT IT BE PROTECTED OR PRIVATE, I DONT WANT IT PUBLIC
-        public void determineIfEuropean()
+        private void determineIfEuropean()
         {
             if (Enum.TryParse<EU_Countries>(location.ToString(), out EU_Countries eu_country))
             {

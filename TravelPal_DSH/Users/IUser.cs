@@ -16,6 +16,6 @@ namespace TravelPal_DSH.Users
 
 
         // Should be run anytime location is set
-        void determineIfEuropean();
+        //public void DetermineIfEuropean();
     }
 }
