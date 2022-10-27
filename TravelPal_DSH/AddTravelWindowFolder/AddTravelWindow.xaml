@@ -57,7 +57,7 @@
                       FontSize="20"
                       Foreground="MediumSlateBlue"
                       Background="MintCream"
-                      />
+                      SelectionChanged="cmbCountry_SelectionChanged"/>
             
             <!-- Travellers txb and label -->
             <Label

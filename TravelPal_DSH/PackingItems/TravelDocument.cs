@@ -12,6 +12,7 @@ namespace TravelPal_DSH.PackingItems
         private string name;
 
         public string Name { get => name; set => name = value; }
+        public bool Required { get => required; set => required = value; }
 
         public TravelDocument(bool required, string name)
         {
@@ -22,6 +23,11 @@ namespace TravelPal_DSH.PackingItems
         public string GetInfo()
         {
             return "TravelDocument getinfo not yet implemented";
+        }
+
+        public override string ToString()
+        {
+            return $"Travel document {name}. Required: {required}";
         }
     }
 }

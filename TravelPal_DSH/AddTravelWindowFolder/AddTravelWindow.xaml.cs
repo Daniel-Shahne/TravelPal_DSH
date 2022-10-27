@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelPal_DSH.Enums;
+using TravelPal_DSH.PackingItems;
 using TravelPal_DSH.Travels;
 using TravelPal_DSH.TravelsWindowFolder;
 using TravelPal_DSH.Users;
@@ -37,7 +38,7 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             travelManager = tm;
             UserManager = um;
 
-            cmbCountry.ItemsSource = Enum.GetValues(typeof(All_Countries)); //TODO fix country names
+            cmbCountry.ItemsSource = Enum.GetValues(typeof(All_Countries));
             cmbTripType.ItemsSource = Enum.GetValues(typeof(Trip_Types));
 
             // Initialize colors
@@ -253,6 +254,63 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             {
                 MessageBox.Show(errorString);
             }
+        }
+
+        /* Will automatically add/update the one TravelDocument "Passport" 
+         * according to the destination country and if the current user is 
+         * european or not*/
+        private void cmbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            bool userEuropean = UserManager.SignedInUser.IsEuropean;
+            bool passRequired = true;
+
+            TravelDocument? passport = null;
+
+            /* Loops through items list to check if a passport exists 
+             * If no existing passport was found, passport var remains
+             * null. Index for use in overriding */
+            int passIndex = -1;
+            var lvItemsItems = lvPackingItems.Items;
+            for (int i = 0; i <= lvItemsItems.Count - 1; i++)
+            {
+                TravelDocument? travelDocument = lvItemsItems[i] as TravelDocument;
+                if (travelDocument is not null && travelDocument.Name.Equals("Passport"))
+                {
+                    passport = travelDocument;
+                    passIndex = i;
+                    break;
+                }
+            }
+
+            /* Gets a destination as string, and EU country lists of strings */
+            All_Countries destination = (All_Countries)cmbCountry.SelectedItem;
+            string destinationString = destination.ToString();
+            List<string> EUCountries = Enum.GetNames(typeof(EU_Countries)).ToList<string>();
+
+            /* The only time a passport is NOT required is when user
+             * is european AND the destination is in EU */
+            if (EUCountries.Contains(destinationString) && userEuropean) passRequired = false;
+
+            /* Changes required setting of existing passport to reflect
+             * passrequired. If no passport exists then creates a new one */
+            if (passport is null)
+            {
+                passport = new(passRequired, "Passport");
+                lvPackingItems.Items.Add(passport);
+            }
+            else
+            {
+                /* Need to override the listviewitem with local passport
+                 * The listviewitem is got by the index from loop */
+                TravelDocument lvItem = (TravelDocument)lvPackingItems.Items.GetItemAt(passIndex);
+                lvItem.Required = passRequired;
+
+                /* This code works but it doesnt update the item, instead
+                 * removing and creating a new one. Saving incase above breaks*/
+                //lvPackingItems.Items.Remove(passport);
+                //passport.Required = passRequired;
+                //lvPackingItems.Items.Add(passport);
+            } 
         }
     }
 }

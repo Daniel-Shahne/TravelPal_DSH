@@ -38,7 +38,7 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
             this.tm = tm;
             this.um = um;
 
-            cmbCountry.ItemsSource = Enum.GetValues(typeof(All_Countries)); // TODO fix display name
+            cmbCountry.ItemsSource = Enum.GetValues(typeof(All_Countries)); 
 
             // Initialize colors
             badInputColor = (Brush)bc.ConvertFrom("#f5b8b9");
