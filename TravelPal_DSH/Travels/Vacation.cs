@@ -26,5 +26,10 @@ namespace TravelPal_DSH.Travels
         {
             return "Vacation getinfo not yet implemented";
         }
+
+        public override string ToString() // TODO make listviews use GetInfo
+        {
+            return $"Vacation (All incl. {AllInclusive}) to {Destination} for {TravelDays} days";
+        }
     }
 }

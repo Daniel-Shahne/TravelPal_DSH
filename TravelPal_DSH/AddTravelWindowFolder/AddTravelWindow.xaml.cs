@@ -338,11 +338,50 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             else MessageBox.Show("Need to select an item first to remove", "No selection", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /* Creates the travel and returns to travelswindow */
         private void btnAddTravel_Click(object sender, RoutedEventArgs e)
         {
             if (generateErrorMsgTravel(out string errorString))
             {
-                // Add travel
+                List<PackingListItem> packingList = new();
+                foreach (PackingListItem item in lvPackingItems.Items) packingList.Add(item);
+
+                All_Countries destination = (All_Countries)cmbCountry.SelectedItem;
+                DateTime startDate = (DateTime)dpStartDate.SelectedDate;
+                DateTime endDate = (DateTime)dpEndDate.SelectedDate;
+
+                if (cmbTravelType.Text.Equals("Trip"))
+                {
+                    Trip newTrip = new(
+                        txbDestination.Text, 
+                        Int32.Parse(txbTravellers.Text),
+                        destination,
+                        startDate, 
+                        endDate, 
+                        (User)UserManager.SignedInUser,
+                        (Trip_Types)cmbTripType.SelectedItem, 
+                        packingList);
+
+                    travelManager.addTravel(newTrip);
+                    MessageBox.Show($"Added new trip to {destination}!", "Booking successfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    btnCancel_Click(sender, e);
+                }
+                else if (cmbTravelType.Text.Equals("Vacation"))
+                {
+                    Vacation newVacation = new(
+                        txbDestination.Text,
+                        Int32.Parse(txbTravellers.Text),
+                        destination,
+                        startDate,
+                        endDate,
+                        (User)UserManager.SignedInUser,
+                        (bool)cbAllInclusive.IsChecked,
+                        packingList);
+
+                    travelManager.addTravel(newVacation);
+                    MessageBox.Show($"Added new trip to {destination}!", "Booking successfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    btnCancel_Click(sender, e);
+                }
 
             }
             else

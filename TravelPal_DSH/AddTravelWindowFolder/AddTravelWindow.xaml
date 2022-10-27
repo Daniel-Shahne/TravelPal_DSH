@@ -51,10 +51,10 @@
                 Foreground="MintCream"/>
             <ComboBox x:Name="cmbCountry"
                       Grid.Column="1"
-                      Margin="15 20"
+                      Margin="15 10"
                       VerticalContentAlignment="Center"
                       HorizontalContentAlignment="Center"
-                      FontSize="20"
+                      FontSize="15"
                       Foreground="MediumSlateBlue"
                       Background="MintCream"
                       SelectionChanged="cmbCountry_SelectionChanged"/>
@@ -256,7 +256,7 @@
                       Background="MintCream"
                       />
 
-            <!-- Buttons -->
+            <!-- Buttons (and stackpanel for item add/remove) -->
             <Button x:Name="btnAddTravel"
                     Grid.Row="2"
                     Grid.Column="0"
@@ -267,7 +267,6 @@
                     Foreground="MediumSlateBlue"
                     FontSize="17"
                     Click="btnAddTravel_Click"/>
-
             <StackPanel 
                 Grid.Row="2"
                 Grid.Column="1"
@@ -292,7 +291,6 @@
                     FontSize="16"
                     Click="btnRemoveItem_Click"/>
             </StackPanel>
-
             <Button x:Name="btnCancel"
                     Grid.Row="2"
                     Grid.Column="2"
