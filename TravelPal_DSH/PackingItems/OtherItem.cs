@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,24 @@ namespace TravelPal_DSH.PackingItems
         private int quantity;
         private string name;
 
-        public int Quantity { get => quantity; set => quantity = value; }
-        public string Name { get => name; set => name = value; }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
+        public int Quantity
+        {
+            get => quantity; set
+            {
+                quantity = value;
+                NotifyPropertyChanged("Quantity");
+            }
+        }
+        public string Name
+        {
+            get => name; set
+            {
+                Name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
         public OtherItem(int quantity, string name)
         {
             this.quantity = quantity;
@@ -23,6 +39,17 @@ namespace TravelPal_DSH.PackingItems
         public string GetInfo()
         {
             return "otheritem getinfo not yet implemented";
+        }
+
+        public override string ToString() // TODO need to make items listview use getinfo
+        {
+            return $"Item {Name}, Quantity: {Quantity}";
+        }
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+
         }
     }
 }

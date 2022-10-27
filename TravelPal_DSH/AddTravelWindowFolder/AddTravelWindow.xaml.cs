@@ -146,6 +146,59 @@ namespace TravelPal_DSH.AddTravelWindowFolder
 
         }
 
+        /* Either creates a new passport (TravelDocument in the listview), 
+         * or "updates" a current one, to reflect passport requirement*/
+        private void updatePassReq()
+        {
+            bool userEuropean = UserManager.SignedInUser.IsEuropean;
+            bool passRequired = true;
+
+            TravelDocument? passport = null;
+
+            /* Loops through items list to check if a passport exists 
+             * If no existing passport was found, passport var remains
+             * null. Index for use in overriding */
+            int passIndex = -1;
+            var lvItemsItems = lvPackingItems.Items;
+            for (int i = 0; i <= lvItemsItems.Count - 1; i++)
+            {
+                TravelDocument? travelDocument = lvItemsItems[i] as TravelDocument;
+                if (travelDocument is not null && travelDocument.Name.Equals("Passport"))
+                {
+                    passport = travelDocument;
+                    passIndex = i;
+                    break;
+                }
+            }
+
+            /* Gets a destination as string, and EU country lists of strings */
+            All_Countries destination = (All_Countries)cmbCountry.SelectedItem;
+            string destinationString = destination.ToString();
+            List<string> EUCountries = Enum.GetNames(typeof(EU_Countries)).ToList<string>();
+
+            /* The only time a passport is NOT required is when user
+             * is european AND the destination is in EU */
+            if (EUCountries.Contains(destinationString) && userEuropean) passRequired = false;
+
+            /* Changes required setting of existing passport to reflect
+             * passrequired. If no passport exists then creates a new one */
+            if (passport is null)
+            {
+                passport = new(passRequired, "Passport");
+                lvPackingItems.Items.Add(passport);
+            }
+            else
+            {
+                /* This code works but it doesnt update the item, instead
+                 * removing and creating a new one. Could not make it
+                 * automatically update via INPC so ill "simulate" it
+                 * via inserting at its old index*/
+                lvPackingItems.Items.Remove(passport);
+                passport.Required = passRequired;
+                lvPackingItems.Items.Insert(passIndex, passport);
+            }
+        }
+
 
         // ------------------ EVENTS ---------------------
 
@@ -230,17 +283,59 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
         }
 
+        /* Creates either a new TravelDocument or OtherItem and
+         * adds to the listview, unless user tries to add a
+         * passport. User can still however add passport as
+         * an OtherItem. */
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
             if (generateErrorMsgItem(out string errorString))
             {
-                // Add Item
+                if ((bool)cbDocument.IsChecked)
+                {
+                    // User cant add a password manually
+                    if (txbItemName.Text.ToLower().Equals("passport"))
+                    {
+                        MessageBox.Show("Passport is added automatically", "Unallowed item name", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    TravelDocument newDoc = new((bool)cbRequired.IsChecked, txbItemName.Text);
+                    lvPackingItems.Items.Add(newDoc);
+                }
+                else if (!(bool)cbDocument.IsChecked)
+                {
+                    OtherItem newItem = new(Int32.Parse(txbQuantity.Text), txbItemName.Text);
+                    lvPackingItems.Items.Add(newItem);
+                }
+                else
+                {
+                    MessageBox.Show("Something wrong with cbDocument and/or cbRequired", "Unkown error");
+                }
 
             }
             else
             {
                 MessageBox.Show(errorString);
             }
+        }
+
+        /* Removes an item at selected row in listview
+         * Will not remove a passport (displays error) */
+        private void btnRemoveItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvPackingItems.SelectedIndex >= 0)
+            {
+                TravelDocument? potentialPass = lvPackingItems.SelectedItem as TravelDocument;
+                if (potentialPass != null && potentialPass.Name.ToLower().Equals("passport"))
+                {
+                    MessageBox.Show("Cannot modify passport", "Passport selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                lvPackingItems.Items.RemoveAt(lvPackingItems.SelectedIndex);
+            }
+            else MessageBox.Show("Need to select an item first to remove", "No selection", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void btnAddTravel_Click(object sender, RoutedEventArgs e)
@@ -256,61 +351,13 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
         }
 
-        /* Will automatically add/update the one TravelDocument "Passport" 
-         * according to the destination country and if the current user is 
-         * european or not*/
+        /* Calls updatePassReq to update password requirement whever
+         * destination country is changed */
         private void cmbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            bool userEuropean = UserManager.SignedInUser.IsEuropean;
-            bool passRequired = true;
-
-            TravelDocument? passport = null;
-
-            /* Loops through items list to check if a passport exists 
-             * If no existing passport was found, passport var remains
-             * null. Index for use in overriding */
-            int passIndex = -1;
-            var lvItemsItems = lvPackingItems.Items;
-            for (int i = 0; i <= lvItemsItems.Count - 1; i++)
-            {
-                TravelDocument? travelDocument = lvItemsItems[i] as TravelDocument;
-                if (travelDocument is not null && travelDocument.Name.Equals("Passport"))
-                {
-                    passport = travelDocument;
-                    passIndex = i;
-                    break;
-                }
-            }
-
-            /* Gets a destination as string, and EU country lists of strings */
-            All_Countries destination = (All_Countries)cmbCountry.SelectedItem;
-            string destinationString = destination.ToString();
-            List<string> EUCountries = Enum.GetNames(typeof(EU_Countries)).ToList<string>();
-
-            /* The only time a passport is NOT required is when user
-             * is european AND the destination is in EU */
-            if (EUCountries.Contains(destinationString) && userEuropean) passRequired = false;
-
-            /* Changes required setting of existing passport to reflect
-             * passrequired. If no passport exists then creates a new one */
-            if (passport is null)
-            {
-                passport = new(passRequired, "Passport");
-                lvPackingItems.Items.Add(passport);
-            }
-            else
-            {
-                /* Need to override the listviewitem with local passport
-                 * The listviewitem is got by the index from loop */
-                TravelDocument lvItem = (TravelDocument)lvPackingItems.Items.GetItemAt(passIndex);
-                lvItem.Required = passRequired;
-
-                /* This code works but it doesnt update the item, instead
-                 * removing and creating a new one. Saving incase above breaks*/
-                //lvPackingItems.Items.Remove(passport);
-                //passport.Required = passRequired;
-                //lvPackingItems.Items.Add(passport);
-            } 
+            updatePassReq();
         }
+
+
     }
 }

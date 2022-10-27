@@ -13,7 +13,8 @@ namespace TravelPal_DSH.Users
         private List<IUser> users = new()
         {
             new Admin("admin", "password", Enums.All_Countries.Sweden),
-            new User("Gandalf", "password", Enums.All_Countries.Sweden)
+            new User("Gandalf", "password", Enums.All_Countries.Sweden),
+            new User("daniel", "12345", Enums.All_Countries.Iran)
         };
 
         internal IUser? SignedInUser { get => signedInUser; }

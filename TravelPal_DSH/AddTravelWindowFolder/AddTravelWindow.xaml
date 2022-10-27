@@ -290,7 +290,7 @@
                     Background="MintCream"
                     Foreground="MediumSlateBlue"
                     FontSize="16"
-                    />
+                    Click="btnRemoveItem_Click"/>
             </StackPanel>
 
             <Button x:Name="btnCancel"

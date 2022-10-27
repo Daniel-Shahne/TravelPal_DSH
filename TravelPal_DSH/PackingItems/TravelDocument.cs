@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,20 @@ namespace TravelPal_DSH.PackingItems
         private bool required;
         private string name;
 
-        public string Name { get => name; set => name = value; }
-        public bool Required { get => required; set => required = value; }
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public string Name { get => name; set 
+            { 
+                Name = value;
+                NotifyPropertyChanged("Name");
+            } 
+        }
+        public bool Required { get => required; set 
+            {
+                required = value;
+                NotifyPropertyChanged("Required");
+            } 
+        }
 
         public TravelDocument(bool required, string name)
         {
@@ -25,9 +38,14 @@ namespace TravelPal_DSH.PackingItems
             return "TravelDocument getinfo not yet implemented";
         }
 
-        public override string ToString()
+        public override string ToString() // TODO need to make listviews use getinfo
         {
             return $"Travel document {name}. Required: {required}";
+        }
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
 }
