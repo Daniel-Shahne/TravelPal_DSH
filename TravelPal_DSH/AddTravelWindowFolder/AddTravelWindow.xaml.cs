@@ -58,17 +58,16 @@ namespace TravelPal_DSH.AddTravelWindowFolder
         /* Will check every field and return bool as status
          * will send out a string variable with error message
          * if any exist */
-        private bool generateErrorMsg(out string errorMsg)
+        private bool generateErrorMsgTravel(out string errorMsg)
         {
             List<string> listOfErrors = new();
 
             // cmbCountry must be filled
             if (cmbCountry.SelectedItem is null) listOfErrors.Add("Must select a destination country");
 
-            // Travellers, destination and name are required regardless of options
+            // Travellers and destinationare required regardless of options
             if (txbTravellers.Tag is false) listOfErrors.Add("Travellers must be a number between 0-99");
             if (txbDestination.Tag is false) listOfErrors.Add("Must state a travel destination");
-            if (txbItemName.Tag is false) listOfErrors.Add("Must state an item name");
 
             // Nested error msg depending on trip or vacation (travel type), and then vacation cb OR trip type cmb
             if (cmbTravelType.Text.Equals("Trip"))
@@ -84,22 +83,15 @@ namespace TravelPal_DSH.AddTravelWindowFolder
                 listOfErrors.Add("Invalid/Null travel type selection");
             }
 
-            // Nested error msg depending on cbDocument
-            if (cbDocument.IsChecked is not null && !(bool)cbDocument.IsChecked)
-            {
-                if (txbQuantity.Tag is false) listOfErrors.Add("Must state an item quantity");
-            }
-            else if (cbDocument.IsChecked is not null && (bool)cbDocument.IsChecked)
-            {
-                // Nothing should happen?
-            }
-            else 
-            {
-                // This should not even be possible to reach
-                listOfErrors.Add("cbRequired is somehow null?");
-            }
 
-            // Calendar null checks
+            // Calendar null checks, and check if enddate isnt after startdate
+            if (dpStartDate.SelectedDate is null) listOfErrors.Add("Must state a start date");
+            if (dpEndDate.SelectedDate is null) listOfErrors.Add("Must state an end date");
+
+            if (dpStartDate.SelectedDate is not null && dpEndDate.SelectedDate is not null)
+            {
+                if (dpEndDate.SelectedDate < dpStartDate.SelectedDate) listOfErrors.Add("End date must be after start date");
+            }
 
 
             // Finalizing method and returning status (and possible errorMsg)
@@ -116,10 +108,49 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
         }
 
+        /* Works similar to generateErrorMsgTravel, but for item fields */
+        private bool generateErrorMsgItem(out string errorMsg)
+        {
+            List<string> listOfErrors = new();
+
+            // Name allways required
+            if (txbItemName.Tag is false) listOfErrors.Add("Must state an item name");
+
+            // Nested error msg depending on cbDocument
+            if (cbDocument.IsChecked is not null && !(bool)cbDocument.IsChecked)
+            {
+                if (txbQuantity.Tag is false) listOfErrors.Add("Must state an item quantity");
+            }
+            else if (cbDocument.IsChecked is not null && (bool)cbDocument.IsChecked)
+            {
+                // Nothing should happen?
+            }
+            else
+            {
+                // This should not even be possible to reach
+                listOfErrors.Add("cbRequired is somehow null?");
+            }
+
+            if (listOfErrors.Count > 0)
+            {
+                string errorMsgA = string.Join("\n", listOfErrors);
+                errorMsg = errorMsgA;
+                return false;
+            }
+            else
+            {
+                errorMsg = "";
+                return true;
+            }
+
+        }
 
 
         // ------------------ EVENTS ---------------------
 
+        /* Hides or shows options to select all inclusive
+         * OR another cmb to select trip type, depending 
+         * on which travel type was selected */
         private void cmbTravelType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem cbi = (ComboBoxItem)cmbTravelType.SelectedItem;
@@ -200,9 +231,23 @@ namespace TravelPal_DSH.AddTravelWindowFolder
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            if (generateErrorMsg(out string errorString))
+            if (generateErrorMsgItem(out string errorString))
+            {
+                // Add Item
+
+            }
+            else
+            {
+                MessageBox.Show(errorString);
+            }
+        }
+
+        private void btnAddTravel_Click(object sender, RoutedEventArgs e)
+        {
+            if (generateErrorMsgTravel(out string errorString))
             {
                 // Add travel
+
             }
             else
             {

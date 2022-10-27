@@ -30,6 +30,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Rectangle
@@ -119,7 +121,19 @@
                 <ComboBoxItem Content="Trip"/>
                 <ComboBoxItem Content="Vacation"/>
             </ComboBox>
-            
+
+            <!-- sp containing Labels for calendars -->
+            <StackPanel Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Height="25">
+                <Label Content="Start Date" Width="170" Foreground="MintCream"/>
+                <Label Content="End Date" Foreground="MintCream"/>
+            </StackPanel>
+
+            <!-- sp containing two calendars -->
+            <StackPanel Grid.Row="6" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <DatePicker x:Name="dpStartDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="0 0 25 0" Height="25"/>
+                <DatePicker x:Name="dpEndDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="25 0 0 0" Height="25"/>
+            </StackPanel>
+
             <!-- Section below is dependant on trip cmb above -->
             <!-- Label (Trip type OR all incl.) and cmb OR cb -->
             <Label x:Name="lblTripOrVacation"
@@ -162,13 +176,11 @@
             </Grid.ColumnDefinitions>
 
             <!-- Dividing grid layer (R) two into rows -->
+            <!-- After moving calendar to left grid the rows got broken -->
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="0.4*"/>
             </Grid.RowDefinitions>
 
             <Rectangle
@@ -235,40 +247,57 @@
                          TextChanged="txbIntField_TextChanged"/>
             </StackPanel>
 
-            <!-- sp containing Labels for calendars -->
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Start Date" Width="170" Foreground="MintCream"/>
-                <Label Content="End Date" Foreground="MintCream"/>
-            </StackPanel>
-
-                <!-- sp containing two calendars -->
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                <DatePicker x:Name="dpStartDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="0 0 25 0"/>
-                <DatePicker x:Name="dpEndDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="25 0 0 0"/>
-            </StackPanel>
-
             <!-- ListView containing packing items -->
             <ListView x:Name="lvPackingItems"
-                      Grid.Row="3"
+                      Grid.Row="1"
                       Grid.ColumnSpan="3"
                       Margin="15"
                       Foreground="MediumSlateBlue"
-                      Background="MintCream"/>
+                      Background="MintCream"
+                      />
 
             <!-- Buttons -->
-            <Button x:Name="btnAddItem"
-                    Grid.Row="4"
+            <Button x:Name="btnAddTravel"
+                    Grid.Row="2"
                     Grid.Column="0"
-                    Margin="15 40"
+                    Margin="17 0"
+                    Height="55"
+                    Content="Add Travel"
+                    Background="MintCream"
+                    Foreground="MediumSlateBlue"
+                    FontSize="17"
+                    Click="btnAddTravel_Click"/>
+
+            <StackPanel 
+                Grid.Row="2"
+                Grid.Column="1"
+                Orientation="Vertical"
+                VerticalAlignment="Center">
+                <Button x:Name="btnAddItem"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="10 3"
                     Content="Add Item"
                     Background="MintCream"
                     Foreground="MediumSlateBlue"
                     FontSize="17"
                     Click="btnAddItem_Click"/>
+                <Button x:Name="btnRemoveItem"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="10 3"
+                    Content="Remove Item"
+                    Background="MintCream"
+                    Foreground="MediumSlateBlue"
+                    FontSize="16"
+                    />
+            </StackPanel>
+
             <Button x:Name="btnCancel"
-                    Grid.Row="4"
+                    Grid.Row="2"
                     Grid.Column="2"
-                    Margin="15 40"
+                    Margin="17 0"
+                    Height="55"
                     Content="Cancel"
                     Background="MintCream"
                     Foreground="MediumSlateBlue"
