@@ -25,16 +25,32 @@ namespace TravelPal_DSH.TravelsWindowFolder
     {
         UserManager userManager;
         TravelManager travelManager;
+        bool adminLoggedIn = false;
+
         internal TravelsWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
 
             User user = userManager.SignedInUser as User;
+            this.DataContext = user;
+
+            if (user is null)
+            {
+                Admin adminuser = userManager.SignedInUser as Admin;
+                adminuser.refreshAdminTravels(travelManager.getAdminTravels());
+                this.DataContext = adminuser;
+                adminLoggedIn = true;
+
+                // Colors refuse to change, even if removed from xaml
+                btnAddTravel.Background = Brushes.Red;
+                btnUserDetails.Background = Brushes.Red;
+
+                btnAddTravel.IsEnabled = false;
+                btnUserDetails.IsEnabled = false;
+            }
 
             this.userManager = userManager;
             this.travelManager = travelManager;
-            this.DataContext = user;
-            
         }
 
         /* Sends the current usermanager and travelmanager instances 
@@ -65,7 +81,13 @@ namespace TravelPal_DSH.TravelsWindowFolder
             if (lvTravels.SelectedItem is not null)
             {
                 Travel travelToRemove = (Travel)lvTravels.SelectedItem;
-                travelManager.removeTravel(travelToRemove);
+                
+                if (adminLoggedIn)
+                {
+                    travelManager.removeTravel(travelToRemove, (Admin)userManager.SignedInUser);
+                    lvTravels.Items.Refresh(); // INPC refuses to update lv when admin removes an item, so i force with refresh
+                }
+                else travelManager.removeTravel(travelToRemove);
             }
             else MessageBox.Show("Need to select a travel first", "No selected travel", MessageBoxButton.OK, MessageBoxImage.Information);
         }

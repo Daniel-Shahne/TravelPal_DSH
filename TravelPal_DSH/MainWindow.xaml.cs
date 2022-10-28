@@ -51,8 +51,6 @@ namespace TravelPal_DSH
                 this.userManager = new();
                 populateUserTravels();
             }
-
-            
         }
             
 

@@ -28,11 +28,13 @@ namespace TravelPal_DSH.Travels
         }
 
         // Deletes a travel from travels
-        public void removeTravel(Travel travel)
+        public void removeTravel(Travel travel, Admin? admin = null)
         {
             travels.Remove(travel);
 
             travel.TravelOwner.refreshUserTravels(getUserTravels(travel.TravelOwner));
+
+            if (admin != null) admin.refreshAdminTravels(getAdminTravels());
         }
 
         /* Returns a filtered list of travels where the travel owners
@@ -42,6 +44,11 @@ namespace TravelPal_DSH.Travels
         {
             List<Travel> filteredList = travels.Where(x => x.TravelOwner.Equals(user)).ToList();
             return filteredList;
+        }
+
+        public List<Travel> getAdminTravels()
+        {
+            return travels;
         }
     }
 }
