@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelPal_DSH.AddTravelWindowFolder;
+using TravelPal_DSH.TravelDetailsWindowFolder;
 using TravelPal_DSH.Travels;
 using TravelPal_DSH.UserDetailsWindowFolder;
 using TravelPal_DSH.Users;
@@ -104,7 +105,8 @@ namespace TravelPal_DSH.TravelsWindowFolder
             if (lvTravels.SelectedItem is not null)
             {
                 Travel selectedTravel = (Travel)lvTravels.SelectedItem;
-                
+                TravelDetailsWindow tdw = new(selectedTravel);
+                tdw.Show();
             }
         }
     }

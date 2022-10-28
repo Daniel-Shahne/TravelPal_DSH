@@ -52,7 +52,10 @@
                   Margin="20 5"
                   VerticalContentAlignment="Center"
                   HorizontalContentAlignment="Center"
-                  FontSize="20"/>
+                  Background="MintCream"
+                  Foreground="MediumSlateBlue"
+                  FontSize="20"
+                  />
 
         <!-- Destination -->
         <Label
@@ -69,7 +72,9 @@
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
                  Foreground="MediumSlateBlue"
-                 FontSize="15"/>
+                 FontSize="15"
+                 Text="{Binding Destination, Mode=OneWay}"
+                 IsEnabled="False"/>
 
         <!-- Travel Type -->
         <Label
@@ -126,11 +131,13 @@
         <TextBox x:Name="txbTravellers"
                  Grid.Row="4"
                  Grid.Column="1"
-                 Margin="20 5"
+                 Margin="150 5"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
                  Foreground="MediumSlateBlue"
-                 FontSize="15"/>
+                 FontSize="15"
+                 Text="{Binding Travellers, Mode=OneWay}"
+                 IsEnabled="False"/>
 
         <!-- Start/End dates -->
         <Label
@@ -165,7 +172,7 @@
         <!-- Travel duration -->
         <Label
                Grid.Row="6"
-               Content="Duration:"
+               Content="Duration (days):"
                FontSize="30"
                VerticalAlignment="Center"
                HorizontalAlignment="Right"
@@ -173,11 +180,13 @@
         <TextBox x:Name="txbDuration"
                  Grid.Row="6"
                  Grid.Column="1"
-                 Margin="20 5"
+                 Margin="150 5"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
                  Foreground="MediumSlateBlue"
-                 FontSize="15"/>
+                 FontSize="15"
+                 Text="{Binding TravelDays, Mode=OneWay}"
+                 IsEnabled="False"/>
 
 
     </Grid>

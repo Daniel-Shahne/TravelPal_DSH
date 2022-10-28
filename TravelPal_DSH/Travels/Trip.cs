@@ -12,7 +12,7 @@ namespace TravelPal_DSH.Travels
     internal class Trip : Travel
     {
         Trip_Types trip_Type;
-        Trip_Types Trip_Type { get { return trip_Type; } set { trip_Type = value; } }
+        public Trip_Types Trip_Type { get { return trip_Type; } set { trip_Type = value; } }
 
         public Trip(string destination, int travellers, All_Countries country, DateTime startDate, DateTime endDate, User travelOwner, Trip_Types trip_Type, List<PackingListItem>? packingList = null) : base(destination, travellers, country, startDate, endDate, travelOwner, packingList)
         {
