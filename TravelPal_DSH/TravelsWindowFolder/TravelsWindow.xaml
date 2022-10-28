@@ -90,7 +90,8 @@
                     Background="MintCream"
                     Grid.Row="2"
                     Height="40"
-                    Width="200"/>
+                    Width="200"
+                    Click="btnDetails_Click"/>
             <Button x:Name="btnRemove"
                     Content="Remove"
                     FontSize="20"

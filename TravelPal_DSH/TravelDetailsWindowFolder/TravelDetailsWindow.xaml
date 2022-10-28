@@ -1,0 +1,184 @@
+﻿<Window x:Class="TravelPal_DSH.TravelDetailsWindowFolder.TravelDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPal_DSH.TravelDetailsWindowFolder"
+        mc:Ignorable="d"
+        Title="TravelDetailsWindow" Height="450" Width="800">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Rectangle
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="2"
+            Fill="MediumSlateBlue"
+            RadiusX="15"
+            RadiusY="15"/>
+
+        <!-- Label for owner -->
+        <Label x:Name="lblOwner"
+               Grid.ColumnSpan="2"
+               Content="Vacation booked by Gandalf"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Foreground="MintCream"/>
+
+        <!-- Destination country -->
+        <Label
+               Grid.Row="1"
+               Content="Country:"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Foreground="MintCream"/>
+        <ComboBox x:Name="cmbCountry"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="20 5"
+                  VerticalContentAlignment="Center"
+                  HorizontalContentAlignment="Center"
+                  FontSize="20"/>
+
+        <!-- Destination -->
+        <Label
+               Grid.Row="2"
+               Content="Destination:"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Foreground="MintCream"/>
+        <TextBox x:Name="txbDestination"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="20 5"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 Foreground="MediumSlateBlue"
+                 FontSize="15"/>
+
+        <!-- Travel Type -->
+        <Label
+               Grid.Row="3"
+               Content="Travel Type:"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Foreground="MintCream"/>
+        
+        <!-- Contains a travel type cmb and resulting vacation all incl OR type of trip -->
+        <Grid
+            Grid.Column="1"
+            Grid.Row="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="cmbTravelType"
+                      Margin="5"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      Foreground="MediumSlateBlue"
+                      FontSize="15"/>
+
+            <ComboBox x:Name="cmbTripType"
+                      Visibility="Hidden"
+                      Grid.Column="1"
+                      Margin="5"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      Foreground="MediumSlateBlue"
+                      FontSize="15"/>
+            <CheckBox x:Name="cbAllInclusive"
+                      Visibility="Hidden"
+                      Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Content="All inclusive"
+                      FontSize="20"
+                      Foreground="MintCream"/>
+        </Grid>
+
+        <!-- Travellers -->
+        <Label
+               Grid.Row="4"
+               Content="Travellers:"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Foreground="MintCream"/>
+        <TextBox x:Name="txbTravellers"
+                 Grid.Row="4"
+                 Grid.Column="1"
+                 Margin="20 5"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 Foreground="MediumSlateBlue"
+                 FontSize="15"/>
+
+        <!-- Start/End dates -->
+        <Label
+               Grid.Row="5"
+               Content="Start and end date:"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Foreground="MintCream"/>
+        <Grid 
+            Grid.Row="5"
+            Grid.Column="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <DatePicker x:Name="dpStartDate"
+                        VerticalAlignment="Center"
+                        Background="MintCream"
+                        Foreground="MediumSlateBlue"
+                        Margin="10 0"/>
+            <DatePicker x:Name="dpEndDate"
+                        VerticalAlignment="Center"
+                        Background="MintCream"
+                        Foreground="MediumSlateBlue"
+                        Grid.Column="1"
+                        Margin="10 0"/>
+        </Grid>
+
+        <!-- Travel duration -->
+        <Label
+               Grid.Row="6"
+               Content="Duration:"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Foreground="MintCream"/>
+        <TextBox x:Name="txbDuration"
+                 Grid.Row="6"
+                 Grid.Column="1"
+                 Margin="20 5"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 Foreground="MediumSlateBlue"
+                 FontSize="15"/>
+
+
+    </Grid>
+</Window>

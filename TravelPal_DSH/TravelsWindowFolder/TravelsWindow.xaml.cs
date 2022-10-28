@@ -98,5 +98,14 @@ namespace TravelPal_DSH.TravelsWindowFolder
             addwin.Show();
             this.Close();
         }
+
+        private void btnDetails_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvTravels.SelectedItem is not null)
+            {
+                Travel selectedTravel = (Travel)lvTravels.SelectedItem;
+                
+            }
+        }
     }
 }

@@ -52,8 +52,6 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             txbQuantity.Tag = false;
         }
 
-
-
         // ------------------ METHODS --------------------
 
         /* Will check every field and return bool as status
@@ -199,13 +197,7 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
         }
 
-
-        // ------------------ EVENTS ---------------------
-
-        /* Hides or shows options to select all inclusive
-         * OR another cmb to select trip type, depending 
-         * on which travel type was selected */
-        private void cmbTravelType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TravelTypeChanged()
         {
             ComboBoxItem cbi = (ComboBoxItem)cmbTravelType.SelectedItem;
 
@@ -221,6 +213,18 @@ namespace TravelPal_DSH.AddTravelWindowFolder
                 cbAllInclusive.Visibility = Visibility.Visible;
                 cmbTripType.Visibility = Visibility.Hidden;
             }
+        }
+
+        // ------------------ EVENTS ---------------------
+
+        /* Hides or shows options to select all inclusive
+         * OR another cmb to select trip type, depending 
+         * on which travel type was selected. Uses method
+         * TravelTypeChanged as that method is to be reused
+         * outside the event*/
+        private void cmbTravelType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TravelTypeChanged();
         }
 
         /* Both events below hides/show whether quantity or 
