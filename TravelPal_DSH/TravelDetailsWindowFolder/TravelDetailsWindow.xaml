@@ -7,187 +7,260 @@
         mc:Ignorable="d"
         Title="TravelDetailsWindow" Height="450" Width="800">
     <Grid Margin="15">
+        <!-- First layer column division -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <Rectangle
-            Grid.RowSpan="10"
-            Grid.ColumnSpan="2"
-            Fill="MediumSlateBlue"
-            RadiusX="15"
-            RadiusY="15"/>
+        <!-- Grid Layer two: Leftern subgrid-->
+        <Grid Margin="10">
 
-        <!-- Label for owner -->
-        <Label x:Name="lblOwner"
-               Grid.ColumnSpan="2"
-               Content="Vacation booked by Gandalf"
-               FontSize="30"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center"
-               Foreground="MintCream"/>
-
-        <!-- Destination country -->
-        <Label
-               Grid.Row="1"
-               Content="Country:"
-               FontSize="30"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Right"
-               Foreground="MintCream"/>
-        <ComboBox x:Name="cmbCountry"
-                  Grid.Row="1"
-                  Grid.Column="1"
-                  Margin="20 5"
-                  VerticalContentAlignment="Center"
-                  HorizontalContentAlignment="Center"
-                  Background="MintCream"
-                  Foreground="MediumSlateBlue"
-                  FontSize="20"
-                  />
-
-        <!-- Destination -->
-        <Label
-               Grid.Row="2"
-               Content="Destination:"
-               FontSize="30"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Right"
-               Foreground="MintCream"/>
-        <TextBox x:Name="txbDestination"
-                 Grid.Row="2"
-                 Grid.Column="1"
-                 Margin="20 5"
-                 VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
-                 Foreground="MediumSlateBlue"
-                 FontSize="15"
-                 Text="{Binding Destination, Mode=OneWay}"
-                 IsEnabled="False"/>
-
-        <!-- Travel Type -->
-        <Label
-               Grid.Row="3"
-               Content="Travel Type:"
-               FontSize="30"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Right"
-               Foreground="MintCream"/>
-        
-        <!-- Contains a travel type cmb and resulting vacation all incl OR type of trip -->
-        <Grid
-            Grid.Column="1"
-            Grid.Row="3">
-
+            <!-- Dividing layer two into two columns -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ComboBox x:Name="cmbTravelType"
-                      Margin="5"
+            <!-- Dividing layer two into multiple rows -->
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle
+            Fill="MediumSlateBlue"
+            RadiusX="15"
+            RadiusY="15"
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="2"/>
+
+            <!-- Country cmb and label -->
+            <Label
+                Content="Country"
+                Grid.Row="0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <ComboBox x:Name="cmbCountry"
+                      Grid.Column="1"
+                      Margin="15 10"
                       VerticalContentAlignment="Center"
                       HorizontalContentAlignment="Center"
+                      FontSize="15"
                       Foreground="MediumSlateBlue"
-                      FontSize="15"/>
+                      Background="MintCream"/>
 
+            <!-- Travellers txb and label -->
+            <Label
+                Content="Travellers"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <TextBox x:Name="txbTravellers"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Width="70"
+                     MaxLength="2"
+                     Margin="15"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     FontSize="20"
+                     Foreground="MediumSlateBlue"
+                     Background="MintCream"/>
+
+            <!-- Destination txb and label -->
+            <Label
+                Content="Destination"
+                Grid.Row="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <TextBox x:Name="txbDestination"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     MaxLength="15"
+                     Margin="15"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     FontSize="20"
+                     Foreground="MediumSlateBlue"
+                     Background="MintCream"/>
+
+            <!-- Travel type cmb and its label-->
+            <Label
+                Content="Travel type"
+                Grid.Row="3"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Foreground="MintCream"/>
+            <ComboBox x:Name="cmbTravelType"
+                      Grid.Row="3"
+                      Grid.Column="1"
+                      Margin="15"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      FontSize="20"
+                      Foreground="MediumSlateBlue"
+                      Background="MintCream">
+                <ComboBoxItem Content="Trip"/>
+                <ComboBoxItem Content="Vacation"/>
+            </ComboBox>
+
+            <!-- Section below is dependant on trip cmb above -->
+            <!-- Label (Trip type OR all incl.) and cmb OR cb -->
+            <Label x:Name="lblTripOrVacation"
+                   Grid.Row="4"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="20"
+                   Foreground="MintCream"/>
             <ComboBox x:Name="cmbTripType"
                       Visibility="Hidden"
+                      Grid.Row="4"
                       Grid.Column="1"
-                      Margin="5"
+                      Margin="15"
                       VerticalContentAlignment="Center"
                       HorizontalContentAlignment="Center"
+                      FontSize="20"
                       Foreground="MediumSlateBlue"
-                      FontSize="15"/>
+                      Background="MintCream"/>
             <CheckBox x:Name="cbAllInclusive"
                       Visibility="Hidden"
+                      Grid.Row="4"
                       Grid.Column="1"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Content="All inclusive"
                       FontSize="20"
-                      Foreground="MintCream"/>
+                      Foreground="MintCream"
+                      Background="MintCream"/>
+
+            <!-- sp containing Labels for calendars -->
+            <StackPanel Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Height="25">
+                <Label Content="Start Date" Width="170" Foreground="MintCream"/>
+                <Label Content="End Date" Foreground="MintCream"/>
+            </StackPanel>
+
+            <!-- sp containing two calendars -->
+            <StackPanel Grid.Row="6" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <DatePicker x:Name="dpStartDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="0 0 25 0" Height="25"/>
+                <DatePicker x:Name="dpEndDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="25 0 0 0" Height="25"/>
+            </StackPanel>
+
+            
+
         </Grid>
 
-        <!-- Travellers -->
-        <Label
-               Grid.Row="4"
-               Content="Travellers:"
-               FontSize="30"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Right"
-               Foreground="MintCream"/>
-        <TextBox x:Name="txbTravellers"
-                 Grid.Row="4"
-                 Grid.Column="1"
-                 Margin="150 5"
-                 VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
-                 Foreground="MediumSlateBlue"
-                 FontSize="15"
-                 Text="{Binding Travellers, Mode=OneWay}"
-                 IsEnabled="False"/>
+        <!-- Grid Layer two: Right subgrid -->
+        <Grid Margin="10" Grid.Column="1">
 
-        <!-- Start/End dates -->
-        <Label
-               Grid.Row="5"
-               Content="Start and end date:"
-               FontSize="30"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Right"
-               Foreground="MintCream"/>
-        <Grid 
-            Grid.Row="5"
-            Grid.Column="1">
-
+            <!-- Dividing grid layer (R) two into columns -->
             <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DatePicker x:Name="dpStartDate"
-                        VerticalAlignment="Center"
-                        Background="MintCream"
-                        Foreground="MediumSlateBlue"
-                        Margin="10 0"/>
-            <DatePicker x:Name="dpEndDate"
-                        VerticalAlignment="Center"
-                        Background="MintCream"
-                        Foreground="MediumSlateBlue"
-                        Grid.Column="1"
-                        Margin="10 0"/>
+            <!-- Dividing grid layer (R) two into rows -->
+            <!-- After moving calendar to left grid the rows got broken -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="0.4*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle
+            Fill="MediumSlateBlue"
+            RadiusX="15"
+            RadiusY="15"
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="3"/>
+
+            <!-- Cell containing name txb and label -->
+            <StackPanel HorizontalAlignment="Stretch" Margin="10">
+                <Label
+                    Content="Name"
+                    Foreground="MintCream"
+                    FontSize="17"
+                    HorizontalAlignment="Center" Visibility="Hidden"/>
+                <TextBox x:Name="txbItemName"
+                         Height="45"
+                         MaxLength="8"
+                         FontSize="20"
+                         Foreground="MediumSlateBlue"
+                         Background="MintCream"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center" Visibility="Hidden"/>
+            </StackPanel>
+
+            <!-- cb Document required or not -->
+            <CheckBox x:Name="cbDocument"
+                      Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Content="Document"
+                      FontSize="15"
+                      Foreground="MintCream" Visibility="Hidden"/>
+
+            <!-- cb required AND a cell for quantity input -->
+            <!-- only ONE of these should be visible, depending on cbDocument -->
+            <CheckBox x:Name="cbRequired"
+                      Visibility="Hidden"
+                      Grid.Column="2"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Content="Required"
+                      FontSize="15"
+                      Foreground="MintCream"/>
+            <StackPanel x:Name="spQuantity" Grid.Column="2" Margin="10">
+                <Label
+                    Content="Quantity"
+                    Foreground="MintCream"
+                    FontSize="17"
+                    HorizontalAlignment="Center" Visibility="Hidden"/>
+                <TextBox x:Name="txbQuantity"
+                         Height="45"
+                         MaxLength="8"
+                         FontSize="20"
+                         Foreground="MediumSlateBlue"
+                         Background="MintCream"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center" Visibility="Hidden"/>
+            </StackPanel>
+
+            <!-- ListView containing packing items -->
+            <ListView x:Name="lvPackingItems"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="3"
+                      Margin="15"
+                      Foreground="MediumSlateBlue"
+                      Background="MintCream"
+                      />
+
+            <!-- Buttons (and stackpanel for item add/remove) -->
+            
+            <Button x:Name="btnClose"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Margin="17 0"
+                    Height="55"
+                    Content="Close"
+                    Background="MintCream"
+                    Foreground="MediumSlateBlue"
+                    FontSize="17"
+                    Click="btnClose_Click"/>
         </Grid>
-
-        <!-- Travel duration -->
-        <Label
-               Grid.Row="6"
-               Content="Duration (days):"
-               FontSize="30"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Right"
-               Foreground="MintCream"/>
-        <TextBox x:Name="txbDuration"
-                 Grid.Row="6"
-                 Grid.Column="1"
-                 Margin="150 5"
-                 VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
-                 Foreground="MediumSlateBlue"
-                 FontSize="15"
-                 Text="{Binding TravelDays, Mode=OneWay}"
-                 IsEnabled="False"/>
-
-
     </Grid>
 </Window>

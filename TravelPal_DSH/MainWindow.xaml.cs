@@ -75,7 +75,7 @@ namespace TravelPal_DSH
             // Adds 3 travels to gandalf
             Trip gTravel1 = new(
                 "Paris",
-                1,
+                5,
                 All_Countries.France,
                 new DateTime(2017, 11, 10),
                 new DateTime(2017, 12, 10),
@@ -100,7 +100,7 @@ namespace TravelPal_DSH
                 new DateTime(2020, 08, 05),
                 new DateTime(2020, 08, 10),
                 gandalf,
-                Trip_Types.Leisure,
+                Trip_Types.Work,
                 passreq
                 );
 

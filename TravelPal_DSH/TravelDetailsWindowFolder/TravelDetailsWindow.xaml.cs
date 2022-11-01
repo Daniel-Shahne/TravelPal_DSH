@@ -38,9 +38,6 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
          * 3. Start and end dates */
         private void fillFields(Travel travel)
         {
-            // Sets top label
-            lblOwner.Content = $"{travel.GetType().Name} booked by {travel.TravelOwner.Name}";
-            
             // Fills country cmb
             ComboBoxItem cmbCountryItem = new ComboBoxItem();
             cmbCountryItem.Content = travel.Country;
@@ -48,6 +45,14 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
             cmbCountry.Items.Add(cmbCountryItem);
             cmbCountry.SelectedIndex = 0;
             cmbCountry.IsEnabled = false;
+
+            // Fills travellers
+            txbTravellers.Text = travel.Travellers.ToString();
+            txbTravellers.IsEnabled = false;
+
+            // Fills destination
+            txbDestination.Text = travel.Destination;
+            txbDestination.IsEnabled = false;
 
             // Fills travel type cmb
             ComboBoxItem travelTypeItem = new();
@@ -61,6 +66,8 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
             if (travel.GetType().Name.Equals("Trip"))
             {
                 Trip trip = (Trip)travel;
+
+                lblTripOrVacation.Content = "Trip type:";
                 
                 cmbTripType.Visibility = Visibility.Visible;
                 ComboBoxItem tripTypeItem = new ComboBoxItem();
@@ -74,6 +81,8 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
             {
                 Vacation vacation = (Vacation)travel;
 
+                lblTripOrVacation.Content = "";
+
                 cbAllInclusive.Visibility = Visibility.Visible;
                 cbAllInclusive.IsChecked = vacation.AllInclusive;
                 cbAllInclusive.IsEnabled = false;
@@ -84,6 +93,15 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
             dpStartDate.IsEnabled = false;
             dpEndDate.SelectedDate = travel.EndDate;
             dpEndDate.IsEnabled = false;
+
+            // Fills packing list
+            lvPackingItems.ItemsSource = travel.PackingList;
+            lvPackingItems.IsEnabled = false;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
