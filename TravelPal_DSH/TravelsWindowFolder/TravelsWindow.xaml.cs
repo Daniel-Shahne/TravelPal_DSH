@@ -42,17 +42,47 @@ namespace TravelPal_DSH.TravelsWindowFolder
                 this.DataContext = adminuser;
                 adminLoggedIn = true;
 
-                // Colors refuse to change, even if removed from xaml
-                btnAddTravel.Background = Brushes.Red;
-                btnUserDetails.Background = Brushes.Red;
-
                 btnAddTravel.IsEnabled = false;
                 btnUserDetails.IsEnabled = false;
             }
 
             this.userManager = userManager;
             this.travelManager = travelManager;
+
+            refreshLvTravels();
         }
+
+        /* Since databinding is more off a pain in the ass than "smidigt"
+         * the listview has to be manually refreshed each time rather than
+         * bind to Travels property */
+        private void refreshLvTravels()
+        {
+            lvTravels.Items.Clear();
+            
+            if (!adminLoggedIn)
+            {
+                User user = (User)userManager.SignedInUser;
+                foreach (Travel travel in user.Travels)
+                {
+                    ListViewItem lvitem = new();
+                    lvitem.Tag = travel;
+                    lvitem.Content = travel.GetInfo();
+                    lvTravels.Items.Add(lvitem);
+                }
+            }
+            else if (adminLoggedIn)
+            {
+                Admin admin = (Admin)userManager.SignedInUser;
+                foreach (Travel travel in admin.Travels)
+                {
+                    ListViewItem lvitem = new();
+                    lvitem.Tag = travel;
+                    lvitem.Content = travel.GetInfo();
+                    lvTravels.Items.Add(lvitem);
+                }
+            }
+        }
+
 
         /* Sends the current usermanager and travelmanager instances 
          * to a new mainwindow, and transitions windows to mainwindow */
@@ -81,14 +111,19 @@ namespace TravelPal_DSH.TravelsWindowFolder
         {
             if (lvTravels.SelectedItem is not null)
             {
-                Travel travelToRemove = (Travel)lvTravels.SelectedItem;
-                
+                ListViewItem lvitem = (ListViewItem)lvTravels.SelectedItem;
+                Travel travelToRemove = lvitem.Tag as Travel;
+
                 if (adminLoggedIn)
                 {
                     travelManager.removeTravel(travelToRemove, (Admin)userManager.SignedInUser);
-                    lvTravels.Items.Refresh(); // INPC refuses to update lv when admin removes an item, so i force with refresh
+                    refreshLvTravels();
                 }
-                else travelManager.removeTravel(travelToRemove);
+                else
+                {
+                    travelManager.removeTravel(travelToRemove);
+                    refreshLvTravels();
+                }
             }
             else MessageBox.Show("Need to select a travel first", "No selected travel", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -104,7 +139,8 @@ namespace TravelPal_DSH.TravelsWindowFolder
         {
             if (lvTravels.SelectedItem is not null)
             {
-                Travel selectedTravel = (Travel)lvTravels.SelectedItem;
+                ListViewItem lvitem = (ListViewItem)lvTravels.SelectedItem;
+                Travel selectedTravel = lvitem.Tag as Travel;
                 TravelDetailsWindow tdw = new(selectedTravel);
                 tdw.Show();
             }

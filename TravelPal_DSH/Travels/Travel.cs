@@ -72,7 +72,7 @@ namespace TravelPal_DSH.Travels
          * done via DisplayMemberPath but that did not work for me? */
         public virtual string GetInfo()
         {
-            return $"Using travels getinfo...";
+            return $"ERROR: Using Travels class getinfo.";
         }
     }
 }

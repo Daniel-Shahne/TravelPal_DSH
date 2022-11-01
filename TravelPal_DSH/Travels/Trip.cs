@@ -21,11 +21,6 @@ namespace TravelPal_DSH.Travels
 
         public override string GetInfo()
         {
-            return "Trip getinfo not yet implemented";
-        }
-
-        public override string ToString() // TODO make listviews use GetInfo
-        {
             return $"{trip_Type.ToString()} trip to {Destination} for {TravelDays} days";
         }
     }

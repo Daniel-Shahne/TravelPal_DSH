@@ -37,7 +37,6 @@
 
             <!-- ListView bound to Travels prop of the user datacontext -->
             <ListView x:Name="lvTravels"
-                      ItemsSource="{Binding Travels}"
                       Grid.Row="2"
                       Margin="15 0 15 15"
                       Foreground="MediumSlateBlue">
