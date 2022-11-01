@@ -30,6 +30,7 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
         bool pswEqualsOk;
         BrushConverter bc = new();
         Brush? badInputColor;
+        string currentUsername;
 
         internal UserDetailsWindow(TravelManager tm, UserManager um)
         {
@@ -48,6 +49,9 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
             pswPassword1.Password = um.SignedInUser.Password;
             pswPassword2.Password = um.SignedInUser.Password;
             cmbCountry.SelectedItem = um.SignedInUser.Location;
+
+            // Remembers current username, incase user tries to change it
+            currentUsername = um.SignedInUser.Name;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -116,7 +120,13 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
         private bool generateErrors()
         {
             List<string> listOfErrors = new();
-;
+
+            // Checks if username is taken, if user has attempted to change it
+            if (!currentUsername.Equals(txbUsername.Text))
+            {
+                if (um.isUsernameTaken(txbUsername.Text)) listOfErrors.Add("Username already taken");
+            }
+
             if (!userNameOk) listOfErrors.Add("Username must be longer than 3 characters long");
             if (!pswLengthOk) listOfErrors.Add("Password must be longer than 5 characters long");
             if (!pswEqualsOk) listOfErrors.Add("Passwords must match");
@@ -135,19 +145,12 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
         {
             if (generateErrors())
             {
-                if (um.updateUsername(um.SignedInUser, txbUsername.Text))
-                {
-                    um.SignedInUser.Password = pswPassword1.Password;
-                    um.SignedInUser.Location = (All_Countries)cmbCountry.SelectedItem;
+                um.SignedInUser.Name = txbUsername.Text;
+                um.SignedInUser.Password = pswPassword1.Password;
+                um.SignedInUser.Location = (All_Countries)cmbCountry.SelectedItem;
 
-                    lblMessage.Content = "Successfully changed account settings";
-                    lblMessage.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    lblMessage.Content = "Cannot have same username as before";
-                    lblMessage.Visibility = Visibility.Visible;
-                }
+                lblMessage.Content = "Successfully changed account settings";
+                lblMessage.Visibility = Visibility.Visible;
             }
             else
             {

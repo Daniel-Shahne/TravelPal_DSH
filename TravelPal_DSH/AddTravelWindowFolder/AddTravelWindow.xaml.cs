@@ -320,7 +320,7 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
             else
             {
-                MessageBox.Show(errorString);
+                MessageBox.Show(errorString, "Cant add item", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
@@ -390,7 +390,7 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
             else
             {
-                MessageBox.Show(errorString);
+                MessageBox.Show(errorString, "Cant add travel", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 

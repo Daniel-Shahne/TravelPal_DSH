@@ -74,15 +74,20 @@ namespace TravelPal_DSH.Users
         }
 
         /* Updates an user's name, only if the new name is
-         * not equal to old name. Uses bool as success status. */
-        public bool updateUsername(IUser user, string newName)
+         * not taken. Uses bool as success status. */
+        public void updateUsername(IUser user, string newName)
         {
-            if (!user.Name.Equals(newName))
+            user.Name = newName;
+        }
+
+        // Checks if username is taken. Bool as status for taken or not
+        public bool isUsernameTaken(string newName)
+        {
+            foreach (IUser iUser in users)
             {
-                user.Name = newName;
-                return true;
+                if (iUser.Name.Equals(newName)) return true;
             }
-            else return false;
+            return false;
         }
     }
 }
