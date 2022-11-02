@@ -25,13 +25,14 @@
 
             <!-- Dividing layer two into multiple rows -->
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Rectangle
@@ -69,7 +70,7 @@
             <TextBox x:Name="txbTravellers"
                      Grid.Row="1"
                      Grid.Column="1"
-                     Width="70"
+                     Width="40"
                      MaxLength="2"
                      Margin="15"
                      VerticalContentAlignment="Center"
@@ -104,11 +105,12 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 FontSize="20"
-                Foreground="MintCream"/>
+                Foreground="MintCream"
+                Margin="15 15 15 0"/>
             <ComboBox x:Name="cmbTravelType"
                       Grid.Row="3"
                       Grid.Column="1"
-                      Margin="15"
+                      Margin="15 15 15 0"
                       VerticalContentAlignment="Center"
                       HorizontalContentAlignment="Center"
                       FontSize="20"
@@ -159,7 +161,27 @@
                 <DatePicker x:Name="dpEndDate" Foreground="MediumSlateBlue" Background="MintCream" Width="128" Margin="25 0 0 0" Height="25"/>
             </StackPanel>
 
-            
+            <!-- Duration txb and label -->
+            <Label
+                Content="Duration (days)"
+                Grid.Row="7"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="15"
+                Foreground="MintCream"
+                Margin="15 0"/>
+            <TextBox x:Name="txbDuration"
+                     Grid.Row="7"
+                     Grid.Column="1"
+                     MaxLength="15"
+                     Margin="15 0"
+                     Width="40"
+                     Height="35"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     FontSize="20"
+                     Foreground="MediumSlateBlue"
+                     Background="MintCream"/>
 
         </Grid>
 

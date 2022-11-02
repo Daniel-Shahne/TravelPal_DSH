@@ -21,7 +21,9 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
     /// </summary>
     public partial class TravelDetailsWindow : Window
     {
-        
+        /* Sets the windows datacontext to the travel
+         * and fills in all the inputs via fillFields 
+         * method, which also disables the inputs */
         internal TravelDetailsWindow(Travel travel)
         {
             InitializeComponent();
@@ -32,10 +34,8 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
         }
 
 
-        /* Things that needs to be set on instantiation
-         * 1. Country cmb
-         * 2. Travel type cmb and its resulting subfield 
-         * 3. Start and end dates */
+        /* Fills in all the fields with information
+         * from the given travel */
         private void fillFields(Travel travel)
         {
             // Fills country cmb
@@ -94,11 +94,16 @@ namespace TravelPal_DSH.TravelDetailsWindowFolder
             dpEndDate.SelectedDate = travel.EndDate;
             dpEndDate.IsEnabled = false;
 
+            // Fills duration
+            txbDuration.Text = travel.TravelDays.ToString();
+            txbDuration.IsEnabled = false;
+
             // Fills packing list
             lvPackingItems.ItemsSource = travel.PackingList;
             lvPackingItems.IsEnabled = false;
         }
 
+        // Closes the window
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

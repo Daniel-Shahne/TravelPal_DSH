@@ -98,7 +98,7 @@ namespace TravelPal_DSH
                 );
             Trip gTravel3 = new(
                 "Tehran",
-                1,
+                27,
                 All_Countries.Iran,
                 new DateTime(2020, 08, 05),
                 new DateTime(2020, 08, 10),

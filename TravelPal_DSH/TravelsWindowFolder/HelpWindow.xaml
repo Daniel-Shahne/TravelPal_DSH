@@ -21,8 +21,8 @@
             remove a booked travel and we'll pretend it never happened, including the <LineBreak/>
             payment (which is exactly $0 for all travels). But in case you actually want to go<LineBreak/>
             somewhere you can press "Add Travel" to book one. The "Help" button is how<LineBreak/>
-            you ended up on this somewhat sarcastically written "help" page (i dont know<LineBreak/>
-            if this had to be included but i didn't want to end up having to komplementera<LineBreak/>
+            you ended up on this somewhat sarcastically written "help" page (i dont know if<LineBreak/>
+            that had to be explained but i didn't want to end up having to komplementera<LineBreak/>
             the uppgift). "Sign out" incase anyone else wants to do this all over again.<LineBreak/>
             <LineBreak/>
             About TravelPal <LineBreak/>
@@ -32,7 +32,7 @@
             would need a help section for to use! With buttons so comically large even your<LineBreak/>
             grandmother with her telescope glasses wont have to zoom in 175% for to see,<LineBreak/>
             gone are the days of picking up her laptop only to see like five sentences filling<LineBreak/>
-            up your screen. Now you can almost trust her to not catch a virus while trying<LineBreak/>
+            up the screen. Now you can almost trust her to not catch a virus while trying<LineBreak/>
             to book a trip and then blame you because you held her laptop for 6 minutes!
         </TextBlock>
     </Grid>
