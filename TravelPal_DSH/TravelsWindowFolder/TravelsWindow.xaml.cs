@@ -152,6 +152,7 @@ namespace TravelPal_DSH.TravelsWindowFolder
                 TravelDetailsWindow tdw = new(selectedTravel);
                 tdw.Show();
             }
+            else MessageBox.Show("Need to select a travel first", "No selected travel", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         /* Opens up a very helpful "help" window */

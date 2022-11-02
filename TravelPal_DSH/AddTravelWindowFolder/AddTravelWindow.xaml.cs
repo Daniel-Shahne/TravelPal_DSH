@@ -215,7 +215,7 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
             else if (cbi.Content.ToString().Equals("Vacation"))
             {
-                lblTripOrVacation.Content = "All inclusive";
+                lblTripOrVacation.Content = "Option";
                 cbAllInclusive.Visibility = Visibility.Visible;
                 cmbTripType.Visibility = Visibility.Hidden;
             }
