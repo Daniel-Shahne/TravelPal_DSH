@@ -30,7 +30,9 @@ namespace TravelPal_DSH.AddTravelWindowFolder
         BrushConverter bc = new();
         Brush? badInputColor;
 
-
+        /* Sets managers and fills comboboxes from enums.
+         * Sets all textbox tags to false as these are used
+         * to confirm valid inputs */
         internal AddTravelWindow(TravelManager tm, UserManager um)
         {
             InitializeComponent();
@@ -54,8 +56,8 @@ namespace TravelPal_DSH.AddTravelWindowFolder
 
         // ------------------ METHODS --------------------
 
-        /* Will check every field and return bool as status
-         * will send out a string variable with error message
+        /* Will check every field and return bool as status.
+         * Will send out a string variable with error message
          * if any exist */
         private bool generateErrorMsgTravel(out string errorMsg)
         {
@@ -197,6 +199,10 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             }
         }
 
+        /* Selectively shows options for trip type OR vacation
+         * all inclusive, depending on which travel type was
+         * selected. For use in cmbTravelType selection
+         * changed event. */
         private void TravelTypeChanged()
         {
             ComboBoxItem cbi = (ComboBoxItem)cmbTravelType.SelectedItem;
@@ -342,7 +348,9 @@ namespace TravelPal_DSH.AddTravelWindowFolder
             else MessageBox.Show("Need to select an item first to remove", "No selection", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        /* Creates the travel and returns to travelswindow */
+        /* Creates the travel and returns to travelswindow if
+         * generateErrorMsgTravel returns true (indicating all
+         * input fields for travel are correctly typed) */
         private void btnAddTravel_Click(object sender, RoutedEventArgs e)
         {
             if (generateErrorMsgTravel(out string errorString))

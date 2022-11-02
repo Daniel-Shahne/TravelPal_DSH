@@ -32,6 +32,8 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
         Brush? badInputColor;
         string currentUsername;
 
+        /* Fills in all input fields with current information
+         * and sets field variable currentUsername */
         internal UserDetailsWindow(TravelManager tm, UserManager um)
         {
             InitializeComponent();
@@ -54,6 +56,7 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
             currentUsername = um.SignedInUser.Name;
         }
 
+        /* Simply passes managers to and returns to travelswindow */
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             TravelsWindow trawin = new(um, tm);
@@ -141,6 +144,8 @@ namespace TravelPal_DSH.UserDetailsWindowFolder
             else return true;
         }
 
+        /* If no inputs are invalid (confirmed by generateErrors)
+         * then saves account settings */
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (generateErrors())

@@ -154,9 +154,11 @@ namespace TravelPal_DSH.TravelsWindowFolder
             }
         }
 
+        /* Opens up a very helpful "help" window */
         private void btnHelp_Click(object sender, RoutedEventArgs e)
         {
-
+            HelpWindow helpWin = new();
+            helpWin.Show();
         }
     }
 }

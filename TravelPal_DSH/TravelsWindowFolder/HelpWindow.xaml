@@ -1,0 +1,39 @@
+﻿<Window x:Class="TravelPal_DSH.TravelsWindowFolder.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPal_DSH.TravelsWindowFolder"
+        mc:Ignorable="d"
+        Title="HelpWindow" Height="400" Width="400">
+    <Grid Margin="15">
+        <Rectangle
+            Fill="MediumSlateBlue"
+            RadiusX="10"
+            RadiusY="10"
+        />
+
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="MintCream" FontSize="10">
+            Welcome to TravelPal! <LineBreak/>
+            The buttons should be painfully obvious how to use but if not I'll help you out. <LineBreak/>
+            "User" lets you see and change your account details. "Details" lets you see, well,<LineBreak/>
+            the details of a travel you've highlighted in the list to the left. "Remove" will<LineBreak/>
+            remove a booked travel and we'll pretend it never happened, including the <LineBreak/>
+            payment (which is exactly $0 for all travels). But in case you actually want to go<LineBreak/>
+            somewhere you can press "Add Travel" to book one. The "Help" button is how<LineBreak/>
+            you ended up on this somewhat sarcastically written "help" page (i dont know<LineBreak/>
+            if this had to be included but i didn't want to end up having to komplementera<LineBreak/>
+            the uppgift). "Sign out" incase anyone else wants to do this all over again.<LineBreak/>
+            <LineBreak/>
+            About TravelPal <LineBreak/>
+            You know how your parents allways need help with doing something online<LineBreak/>
+            because there are a ton of options (and they usually end up pressing some ad?). <LineBreak/>
+            Well TravelPal is here to save the day by providing an idiot proof UI that noone<LineBreak/>
+            would need a help section for to use! With buttons so comically large even your<LineBreak/>
+            grandmother with her telescope glasses wont have to zoom in 175% for to see,<LineBreak/>
+            gone are the days of picking up her laptop only to see like five sentences filling<LineBreak/>
+            up your screen. Now you can almost trust her to not catch a virus while trying<LineBreak/>
+            to book a trip and then blame you because you held her laptop for 6 minutes!
+        </TextBlock>
+    </Grid>
+</Window>
