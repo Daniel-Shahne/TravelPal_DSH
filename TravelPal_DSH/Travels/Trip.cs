@@ -21,7 +21,7 @@ namespace TravelPal_DSH.Travels
 
         public override string GetInfo()
         {
-            return $"{trip_Type.ToString()} trip to {Destination} for {TravelDays} days";
+            return $"Trip to {Destination} for {TravelDays} days";
         }
     }
 }

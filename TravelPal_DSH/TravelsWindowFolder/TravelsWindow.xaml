@@ -100,6 +100,15 @@
                     Height="40"
                     Width="200"
                     Click="btnRemove_Click"/>
+            <Button x:Name="btnHelp"
+                    Content="Help"
+                    FontSize="20"
+                    Foreground="MediumSlateBlue"
+                    Background="MintCream"
+                    Grid.Row="4"
+                    Height="40"
+                    Width="200"
+                    Click="btnHelp_Click"/>
             <Button x:Name="btnSignOut"
                     Content="Sign Out"
                     FontSize="20"

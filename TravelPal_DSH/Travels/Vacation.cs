@@ -24,7 +24,7 @@ namespace TravelPal_DSH.Travels
 
         public override string GetInfo()
         {
-            return $"Vacation (All incl. {AllInclusive}) to {Destination} for {TravelDays} days";
+            return $"Vacation to {Destination} for {TravelDays} days";
         }
     }
 }

@@ -29,9 +29,11 @@ namespace TravelPal_DSH
         TravelManager travelManager;
 
         /* MainWindow is launched from an event in App.Xaml(.cs)
-         * as MainWindow needs to know wether to instantiate a new
-         * userManager, or use the one passed in it (from other created
-         * windows further down app runtime, as new users are created) */
+         * as MainWindow needs to know whether to instantiate new
+         * managers, or uses the one passed (from other created
+         * windows further down app runtime). If creating new 
+         * userManager it also populates some travels by
+         * calling populateUserTravels. */
         internal MainWindow(UserManager? userManager = null, TravelManager? travelManager = null)
         {
             InitializeComponent();
@@ -53,7 +55,8 @@ namespace TravelPal_DSH
             }
         }
             
-
+        /* Adds some travels to the existin Daniel and
+         * Gandalf accounts (admin gets none) */
         private void populateUserTravels()
         {
             // Pulls gandalf and daniel for some initial travel population
@@ -167,6 +170,8 @@ namespace TravelPal_DSH
             }
         }
 
+        /* Passes managers to and opens a new window for registration
+         * while closing this one */
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             RegisterWindow regWin = new(userManager, travelManager);

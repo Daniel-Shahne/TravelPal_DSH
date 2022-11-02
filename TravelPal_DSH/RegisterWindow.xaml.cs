@@ -31,6 +31,9 @@ namespace TravelPal_DSH
         BrushConverter bc = new();
         Brush? badInputColor;
 
+        /* Sets managers, fills country cmb, initializes colors
+         * and sets passwordbox tags to false as they're used to
+         * validate input*/
         internal RegisterWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();

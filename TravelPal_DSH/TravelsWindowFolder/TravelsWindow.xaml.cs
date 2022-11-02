@@ -28,6 +28,10 @@ namespace TravelPal_DSH.TravelsWindowFolder
         TravelManager travelManager;
         bool adminLoggedIn = false;
 
+        /* Sets datacontext to user or admin, in addition to
+         * setting adminLoggedIn. Refreshes lvTravels. If
+         * admin is logged in then it also disables adding
+         * travels and viewing user details. */
         internal TravelsWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
@@ -128,6 +132,8 @@ namespace TravelPal_DSH.TravelsWindowFolder
             else MessageBox.Show("Need to select a travel first", "No selected travel", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /* Simply passes managers and opens new window while
+         * closing this one */
         private void btnAddTravel_Click(object sender, RoutedEventArgs e)
         {
             AddTravelWindow addwin = new(travelManager, userManager);
@@ -135,6 +141,8 @@ namespace TravelPal_DSH.TravelsWindowFolder
             this.Close();
         }
 
+        /* Opens a separate travel details window, for the
+         * selected travel. */
         private void btnDetails_Click(object sender, RoutedEventArgs e)
         {
             if (lvTravels.SelectedItem is not null)
@@ -144,6 +152,11 @@ namespace TravelPal_DSH.TravelsWindowFolder
                 TravelDetailsWindow tdw = new(selectedTravel);
                 tdw.Show();
             }
+        }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
