@@ -44,6 +44,7 @@ namespace TravelPal_DSH.Travels
         internal User TravelOwner { get => travelOwner; }
         internal List<PackingListItem>? PackingList { get => packingList; }
 
+        // Sets fields and calls calculateTravelDays
         public Travel(string destination, int travellers, All_Countries country, DateTime startDate, DateTime endDate, User travelOwner, List<PackingListItem>? packingList = null)
         {
             this.destination = destination;
@@ -67,9 +68,7 @@ namespace TravelPal_DSH.Travels
             return hours;
         }
 
-        /* TODO need to fix lvTravels in TravelsWindow so it uses
-         * GetInfo rather than ToString. Apparently this could be
-         * done via DisplayMemberPath but that did not work for me? */
+        /* To be overriden and used for displaying in listviews */
         public virtual string GetInfo()
         {
             return $"ERROR: Using Travels class getinfo.";

@@ -68,16 +68,19 @@ namespace TravelPal_DSH.Users
 
 
         // Deletes an user
-        public void deleteUser(IUser user)
+        public void removeUser(IUser user)
         {
             users.Remove(user);
         }
 
         /* Updates an user's name, only if the new name is
-         * not taken. Uses bool as success status. */
-        public void updateUsername(IUser user, string newName)
+         * not taken. */
+        public bool updateUsername(IUser user, string newName)
         {
+            if (isUsernameTaken(newName)) return false;
+            
             user.Name = newName;
+            return true;
         }
 
         // Checks if username is taken. Bool as status for taken or not
